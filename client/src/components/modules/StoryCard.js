@@ -20,6 +20,7 @@ class StoryCard extends Component {
   }
 
   render() {
+    if (this.props.card.done) {
       return (
         <div className="StoryCard-container">
             <span className="Title">{this.props.card.cardTitle}</span>
@@ -28,6 +29,16 @@ class StoryCard extends Component {
             <div> {this.props.card.content} </div>
         </div>
       );
+    }
+    else {
+      return (
+        <div className="StoryCard-container">
+            <span className="Title"> No Story Card here yet! </span>
+            <hr/>
+            <div> No content here yet! </div>
+        </div>
+      );
+    }
     /*(this.props.card.content === undefined) ? return(
         <div/>
     ); : return (

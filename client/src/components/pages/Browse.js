@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "@reach/router";
 import StoryInput from "../modules/StoryInput.js";
 
-import { get } from "../../utilities";
+import { get, post } from "../../utilities";
 
 
 /**
@@ -79,6 +79,18 @@ class Browse extends Component {
     })
   }
 
+  // TODO: remove later, only for testing purposes
+  updateCard = (stuff) =>{
+    const body = {
+      cardTitle: "Test Update Title",
+      content: "Test Update Content",
+    }
+    post("/api/card", body).then((story) => {
+        console.log(story);
+      }
+    );
+  }
+
   render() {
     let stories = this.state.storyList.map(s => (
       <div key={s._id}>
@@ -94,6 +106,12 @@ class Browse extends Component {
         {stories}
         <h1> Now here is a submit button! </h1>
         <StoryInput addNewStory = {this.addNewStory}/>
+        <h1> Test update card API button </h1>
+        <button
+          type="submit"
+          value="Submit"
+          onClick={this.updateCard}
+        > Submit </button>
       </div>
     );
   }

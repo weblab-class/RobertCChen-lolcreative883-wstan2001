@@ -13,6 +13,14 @@ import StoryCard from "../modules/StoryCard.js";
  *      pages: []
  * userId: user's ID, need this to post stories
  * 
+ * storyCard field reference:
+ *  cardTitle:
+ *  creator_name:
+ *  creator_id:
+ *  page_num:
+ *  content:
+ *  done:
+ * 
  * State: To store where we're at
  * pagenum: self explanatory
  * pageCode: ie UUR
@@ -26,14 +34,15 @@ class StoryViewer extends Component {
     };
   }
 
+  //we will need a function to refresh the storyviewer page when a new story is added
+
   render() {
     const curCard = this.props.location.state.story.pages[this.state.pagenum];
     return (
-      <div>
+    <div>
         <h1>This is the Story Viewer Page!</h1>
-        {<StoryCard card={curCard}/>
-        }
-      </div>
+        {<StoryCard card={curCard}/>}
+    </div>
     );
   }
 }

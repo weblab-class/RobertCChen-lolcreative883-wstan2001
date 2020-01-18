@@ -102,6 +102,23 @@ router.get("/stories", (req, res) =>{
   StoryObj.find({}).then((stories) => res.send(stories));
 });
 
+//req must specify story's id, page number, and have new title, new content
+router.post("/card", auth.ensureLoggedIn, (req, res) => {
+  StoryObj.findOne({storyTitle: "Story with Pages"}).then((story) => {
+    story.pages[0] = {
+      cardTitle: req.body.cardTitle,
+      creator_name: req.user.name,
+      creator_id: req.user._id,
+      page_num: 0,
+      content: req.body.content,
+      done: true,
+    };
+    console.log(story);
+    story.save().then((s) => res.send(s));
+  });
+  //StoryObj.updateOne({storyTitle: "Story with Pages"}, {$set: {"pages.0.cardTitle": req.body.cardTitle}}).then((s) => res.send(s));
+});
+
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
   console.log(`API route not found: ${req.method} ${req.url}`);
