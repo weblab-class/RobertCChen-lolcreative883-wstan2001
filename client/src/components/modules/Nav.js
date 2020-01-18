@@ -41,9 +41,6 @@ class Nav extends Component {
             <Link to="/profile">
                 Profile
             </Link>
-            <Link to="/storyviewer">
-                Story Viewer
-            </Link>
             {this.props.userId ? (
                 <GoogleLogout
                 clientId={GOOGLE_CLIENT_ID}

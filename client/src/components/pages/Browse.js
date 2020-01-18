@@ -73,6 +73,12 @@ class Browse extends Component {
     });
   }
 
+  addNewStory = (storyObj) => {
+    this.setState({
+      storyList: this.state.storyList.concat([storyObj]),
+    })
+  }
+
   render() {
     let stories = this.state.storyList.map(s => (
       <div key={s._id}>
@@ -87,7 +93,7 @@ class Browse extends Component {
         <h1>This is the browsing page</h1>
         {stories}
         <h1> Now here is a submit button! </h1>
-        <StoryInput userId = {this.props.userId}/>
+        <StoryInput addNewStory = {this.addNewStory}/>
       </div>
     );
   }

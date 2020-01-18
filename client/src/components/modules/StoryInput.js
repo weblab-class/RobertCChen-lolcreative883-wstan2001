@@ -6,9 +6,7 @@ import { post } from "../../utilities";
  * StoryInput is a parent component for story input components
  *
  * Props:
- * @param {string} 
- * userId: user's ID
- * 
+ * addNewStory: this updates storyList in Browse when story added
  */
 class StoryInput extends Component {
   constructor(props) {
@@ -22,12 +20,10 @@ class StoryInput extends Component {
   addStory = (value) => {
     const body = { 
       storyTitle: value,
-      author_id: this.props.userId,
-      pages: ["1", "2", "3"],
     };
     post("/api/story", body).then((story) => {
       console.log("Added new story via submit button");
-      // TODO: Add code here to update some storyList?
+      this.props.addNewStory(story);
     });
   };
 
