@@ -48,12 +48,18 @@ router.post("/story", auth.ensureLoggedIn, (req, res) => {
   for (i = 0; i < 41; i++)
   {
     storyPages = storyPages.concat([{
-      cardTitle: undefined,
+      /*cardTitle: undefined,
       creator_id: undefined,
       creator_name: undefined,
       page_num: i,
       content: undefined,
-      done: false,
+      done: false,*/
+      cardTitle: "Title " + i.toString(),
+      creator_id: "32498",
+      creator_name: "Stanley Wang",
+      page_num: i,
+      content: "Content on page " + i.toString(),
+      done: true,
     }]);
   }
   const newStoryObj = new StoryObj({

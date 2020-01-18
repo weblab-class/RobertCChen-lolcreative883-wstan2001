@@ -15,27 +15,7 @@ class Browse extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        storyList: [{
-            storyTitle: "1984",
-            _id: "1984",
-            author: "George Orwell",
-            author_id: "GO",
-            pages: [],
-        },
-        {
-            storyTitle: "Crime and Punishment",
-            _id: "CP",
-            author: "Fyodor Dostoevsky",
-            author_id: "FD",
-            pages: [],
-        },
-        {
-            storyTitle: "Beloved",
-            _id: "B",
-            author: "Toni Morrison",
-            author_id: "TM",
-            pages: [],
-        },
+        storyList: [
         {
             storyTitle: "Chicken Tenders",
             _id: "CT",
@@ -96,7 +76,10 @@ class Browse extends Component {
   render() {
     let stories = this.state.storyList.map(s => (
       <div key={s._id}>
-        <Link to={"/storyviewer"}> {s.storyTitle} </Link>
+        <Link to={"/storyviewer"} state={{
+          story: s,
+          userId: this.props.userId,
+        }}> {s.storyTitle} </Link>
       </div>
     ));
     return (
