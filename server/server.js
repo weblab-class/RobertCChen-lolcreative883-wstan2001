@@ -37,7 +37,7 @@ const socket = require("./server-socket");
 // TODO change connection URL after setting up your team database
 const mongoConnectionURL = process.env.ATLAS_SRV;
 // TODO change database name to the name you chose
-const databaseName = "melting-plot";
+const databaseName = "meltingplot";
 
 // connect to mongodb
 mongoose
@@ -96,10 +96,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-<<<<<<< HEAD
-=======
-// hardcode port to 3000 for now
->>>>>>> 48b66d425180b94aa7ea753ee431999e4a2b2b2b
+
 const port = process.env.PORT || 3000;
 const server = http.Server(app);
 socket.init(server);

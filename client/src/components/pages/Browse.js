@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "@reach/router";
 import StoryInput from "../modules/StoryInput.js";
 
-import { post } from "../../utilities";
+import { get } from "../../utilities";
 
 
 /**
@@ -17,28 +17,28 @@ class Browse extends Component {
     this.state = {
         storyList: [{
             storyTitle: "1984",
-            story_id: "1984",
+            _id: "1984",
             author: "George Orwell",
             author_id: "GO",
             pages: [],
         },
         {
             storyTitle: "Crime and Punishment",
-            story_id: "Crime and Punishment",
+            _id: "CP",
             author: "Fyodor Dostoevsky",
             author_id: "FD",
             pages: [],
         },
         {
             storyTitle: "Beloved",
-            story_id: "Beloved",
+            _id: "B",
             author: "Toni Morrison",
             author_id: "TM",
             pages: [],
         },
         {
             storyTitle: "Chicken Tenders",
-            story_id: "Chicken Tenders",
+            _id: "CT",
             author: "not Stanley Wang",
             author_id: "SW",
             pages: [
@@ -86,34 +86,18 @@ class Browse extends Component {
 
   componentDidMount() {
     //probably need to do an api call to grab data here
-    const body = {
-      storyTitle: "Actual Pages Now",
-      pages: [
-        {cardTitle: "Chicken Tenders 5",
-        creator_id: "5468",
-        creator_name: "FG",
-        content: "She tries to make me take a nappy, But sleeping doesn't make me happy.",
-        done: true,
-        }
-      ],
-    };
-    post("/api/story", body).then((story) => {
-      console.log("Added story to MongoDB?");
-      /*this.setState({
-        storyList: [story].concat(this.state.storyList),
-      });*/
+    get("/api/stories").then((storyObjs) => {
+      this.setState({
+        storyList: storyObjs,
+      });
     });
   }
 
   render() {
     let stories = this.state.storyList.map(s => (
-      /*<Link to={`/storyviewer/${s.story_id}`}>
-                Browse
-      </Link>*/
-        //div key={s.story_id}> {s.storyTitle} </div>
-        <div key={s.story_id}>
-          <Link to={"/storyviewer"}> {s.storyTitle} </Link>
-        </div>
+      <div key={s._id}>
+        <Link to={"/storyviewer"}> {s.storyTitle} </Link>
+      </div>
     ));
     return (
       <div>

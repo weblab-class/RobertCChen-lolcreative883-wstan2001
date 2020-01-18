@@ -65,6 +65,12 @@ router.post("/story", auth.ensureLoggedIn, (req, res) => {
   newStoryObj.save().then((storyObj) => res.send(storyObj))
 });
 
+router.get("/stories", (req, res) =>{
+  // const users = await User.find({});
+  // res.send(users);
+  StoryObj.find({}).then((stories) => res.send(stories));
+});
+
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
   console.log(`API route not found: ${req.method} ${req.url}`);
