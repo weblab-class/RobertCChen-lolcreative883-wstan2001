@@ -104,12 +104,12 @@ router.get("/stories", (req, res) =>{
 
 //req must specify story's id, page number, and have new title, new content
 router.post("/card", auth.ensureLoggedIn, (req, res) => {
-  StoryObj.findOne({storyTitle: "Story with Pages"}).then((story) => {
-    story.pages[0] = {
+  StoryObj.findOne({_id: req.body.story_id}).then((story) => {
+    story.pages[req.body.page_num] = {
       cardTitle: req.body.cardTitle,
       creator_name: req.user.name,
       creator_id: req.user._id,
-      page_num: 0,
+      page_num: req.body.page_num,
       content: req.body.content,
       done: true,
     };
