@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
+import Browse from "./pages/Browse.js";
+import Profile from "./pages/Profile.js";
+import Nav from "./modules/Nav.js";
+import StoryViewer from "./pages/StoryViewer.js";
 
 import "../utilities.css";
 
@@ -47,15 +51,33 @@ class App extends Component {
   render() {
     return (
       <>
-        <Router>
-          <Skeleton
-            path="/"
-            handleLogin={this.handleLogin}
-            handleLogout={this.handleLogout}
-            userId={this.state.userId}
-          />
-          <NotFound default />
-        </Router>
+        <Nav 
+          handleLogin = {this.handleLogin}
+          handleLogout = {this.handleLogout}
+          userId = {this.state.userId}
+        />
+        <div /*className = App-Container*/ >
+          <Router>
+            <Skeleton
+              path="/"
+              handleLogin={this.handleLogin}
+              handleLogout={this.handleLogout}
+              userId={this.state.userId}
+            />
+            <Browse userId = {this.state.userId}
+              path="/browse"
+            />
+            <Profile
+              path="/profile"
+            />
+            <StoryViewer
+              //path="storyviewer/:story_id"
+              path="/storyviewer"
+              userId = {this.state.userId}
+            />
+            <NotFound default />
+          </Router>
+        </div>
       </>
     );
   }

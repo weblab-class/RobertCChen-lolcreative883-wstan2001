@@ -11,6 +11,7 @@ const express = require("express");
 
 // import models so we can interact with the database
 const User = require("./models/user");
+const StoryObj = require("./models/storyObj");
 
 // import authentication library
 const auth = require("./auth");
@@ -41,6 +42,28 @@ router.post("/initsocket", (req, res) => {
 // |------------------------------|
 // | write your API methods below!|
 // |------------------------------|
+
+router.post("/story", auth.ensureLoggedIn, (req, res) => {
+  let storyPages = [];
+  for (i = 0; i < 41; i++)
+  {
+    storyPages = storyPages.concat([{
+      cardTitle: undefined,
+      creator_id: undefined,
+      creator_name: undefined,
+      page_num: i,
+      content: undefined,
+      done: false,
+    }]);
+  }
+  const newStoryObj = new StoryObj({
+    storyTitle: req.body.storyTitle,
+    author: req.user.name,
+    author_id: req.user._id,
+    pages: storyPages,
+  });
+  newStoryObj.save().then((storyObj) => res.send(storyObj))
+});
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

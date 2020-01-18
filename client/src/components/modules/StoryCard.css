@@ -1,0 +1,14 @@
+.StoryCard-container {
+    margin: var(--s) 64px;
+    padding: var(--s) var(--m);
+    height: 400px;
+    background-color: #E5ECF4;
+}
+
+.Title {
+    font-size: 40px;
+}
+
+.Author {
+    font-size: 24px;
+}

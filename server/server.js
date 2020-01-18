@@ -18,6 +18,8 @@
 const validator = require("./validator");
 validator.checkSetup();
 
+require("dotenv").config();
+
 //import libraries needed for the webserver to work!
 const http = require("http");
 const express = require("express"); // backend framework for our node server.
@@ -32,10 +34,11 @@ const auth = require("./auth");
 const socket = require("./server-socket");
 
 // Server configuration below
-// TODO change connection URL after setting up your team database
-const mongoConnectionURL = "FILL ME IN";
-// TODO change database name to the name you chose
-const databaseName = "FILL ME IN";
+// DONE change connection URL after setting up your team database
+const mongoConnectionURL = process.env.ATLAS_SRV;
+//const mongoConnectionURL = "mongodb+srv://wstan2001:Spark123@cluster0-y7hia.mongodb.net/test?retryWrites=true&w=majority";
+// DONE change database name to the name you chose
+const databaseName = "meltingplot";
 
 // connect to mongodb
 mongoose
@@ -94,8 +97,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-// hardcode port to 3000 for now
-const port = 3000;
+const port = process.env.PORT || 3000;
 const server = http.Server(app);
 socket.init(server);
 
