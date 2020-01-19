@@ -27,8 +27,9 @@ class CardInput extends Component {
       cardTitle: valueTitle,
       content: valueContent,
     };
-    post("/api/story", body).then((story) => {
-      console.log("Added new story via submit button");
+    console.log(body.story_id);
+    post("/api/card", body).then((card) => {
+      console.log("Added new card via card submit button");
       //later will code something here to tell StoryViewer to update
       //this.props.addNewStory(story);
     });
@@ -51,7 +52,7 @@ class CardInput extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     //this.props.onSubmit && this.props.onSubmit(this.state.value);
-    this.updateCard(this.state.valueTitle, this.state.valueContent);
+    this.addCard(this.state.valueTitle, this.state.valueContent);
     this.setState({
       valueTitle: "",
       valueContent: "",
@@ -94,4 +95,4 @@ class CardInput extends Component {
 }
 
 
-export default StoryInput;
+export default CardInput;

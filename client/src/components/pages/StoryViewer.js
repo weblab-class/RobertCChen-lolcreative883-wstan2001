@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import StoryCard from "../modules/StoryCard.js";
+import CardInput from "../modules/CardInput.js";
 
 /**
  * Story Viewer for checking out stories
@@ -7,7 +8,7 @@ import StoryCard from "../modules/StoryCard.js";
  * Props: from Browse or Profile
  * story: at minimum must have storyObj
  *      storyTitle:
- *      story_id:
+ *      _id: this is the story id created by MongoDB
  *      author:
  *      author_id:
  *      pages: []
@@ -38,12 +39,23 @@ class StoryViewer extends Component {
 
   render() {
     const curCard = this.props.location.state.story.pages[this.state.pagenum];
-    return (
-    <div>
-        <h1>This is the Story Viewer Page!</h1>
-        {<StoryCard card={curCard}/>}
-    </div>
-    );
+    if (curCard.done) {
+        return (
+        <div>
+            <h1>This is the Story Viewer Page!</h1>
+            {<StoryCard card={curCard}/>}
+        </div>
+        );
+    }
+    else {
+        return (
+            <div>
+                <h1> This is the Story Viewer Page!</h1>
+                <CardInput story_id = {this.props.location.state.story._id} page_num = {this.state.page_num}/>
+                {console.log(this.props.location.state.story._id)}
+            </div>
+        );
+    }
   }
 }
 
