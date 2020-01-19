@@ -65,35 +65,9 @@ router.post("/story", auth.ensureLoggedIn, (req, res) => {
   newStoryObj.save().then((storyObj) => res.send(storyObj))
 });
 
-// TODO: Delete this later, used only for testing purposes
-router.post("/storycustom", auth.ensureLoggedIn, (req, res) => {
-  let storyPages = [];
-  for (i = 0; i < 41; i++)
-  {
-    storyPages = storyPages.concat([{
-      cardTitle: "Title " + i.toString(),
-      creator_id: "32498",
-      creator_name: "Stanley Wang",
-      page_num: i,
-      content: "Content on page " + i.toString(),
-      done: true,
-    }]);
-  }
-  storyPages[0] = {
-      cardTitle: "C&P: Prologue",
-      creator_id: "543698",
-      creator_name: "Fyodor Dostoevsky",
-      page_num: 0,
-      content: "ON AN EXCEPTIONALLY HOT evening early in July a young man came out of the tiny room which he rented from tenants in S. Place and walked slowly, as though in hesitation, towards K. Bridge.",
-      done: true,
-  };
-  const newStoryObj = new StoryObj({
-    storyTitle: req.body.storyTitle,
-    author: req.user.name,
-    author_id: req.user._id,
-    pages: storyPages,
-  });
-  newStoryObj.save().then((storyObj) => res.send(storyObj))
+router.get("/storyById", (req, res) => {
+  console.log(req.query.story_id);
+  StoryObj.findOne({_id: req.query.story_id}).then((story) => res.send(story));
 });
 
 router.get("/stories", (req, res) =>{
