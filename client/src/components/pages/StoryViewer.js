@@ -23,14 +23,14 @@ import CardInput from "../modules/CardInput.js";
  *  done:
  * 
  * State: To store where we're at
- * pagenum: self explanatory
+ * page_num: self explanatory
  * pageCode: ie UUR
  */
 class StoryViewer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        pagenum: 0,
+        page_num: 0,
         pageCode: "",
     };
   }
@@ -38,7 +38,7 @@ class StoryViewer extends Component {
   //we will need a function to refresh the storyviewer page when a new story is added
 
   render() {
-    const curCard = this.props.location.state.story.pages[this.state.pagenum];
+    const curCard = this.props.location.state.story.pages[this.state.page_num];
     if (curCard.done) {
         return (
         <div>
@@ -52,7 +52,6 @@ class StoryViewer extends Component {
             <div>
                 <h1> This is the Story Viewer Page!</h1>
                 <CardInput story_id = {this.props.location.state.story._id} page_num = {this.state.page_num}/>
-                {console.log(this.props.location.state.story._id)}
             </div>
         );
     }

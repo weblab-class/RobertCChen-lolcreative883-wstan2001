@@ -27,8 +27,7 @@ class CardInput extends Component {
       cardTitle: valueTitle,
       content: valueContent,
     };
-    console.log(body.story_id);
-    post("/api/card", body).then((card) => {
+    post("/api/card", body).then((story) => {
       console.log("Added new card via card submit button");
       //later will code something here to tell StoryViewer to update
       //this.props.addNewStory(story);

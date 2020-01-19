@@ -113,7 +113,6 @@ router.post("/card", auth.ensureLoggedIn, (req, res) => {
       content: req.body.content,
       done: true,
     };
-    console.log(story);
     story.save().then((s) => res.send(s));
   });
   //StoryObj.updateOne({storyTitle: "Story with Pages"}, {$set: {"pages.0.cardTitle": req.body.cardTitle}}).then((s) => res.send(s));
