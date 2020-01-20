@@ -76,7 +76,7 @@ class Browse extends Component {
   addNewStory = (storyObj) => {
     this.setState({
       storyList: this.state.storyList.concat([storyObj]),
-    })
+    });
   }
 
   render() {

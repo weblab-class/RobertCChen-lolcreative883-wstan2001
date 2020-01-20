@@ -37,6 +37,15 @@ class StoryViewer extends Component {
     };
   }
 
+  // exact copy of componentDidMount
+  updateCard = (card) => {
+    get("/api/storyById", {story_id: this.props.location.state.story_id}).then((foundStory) => {
+        this.setState({
+            story: foundStory,
+        });
+    });
+  };
+
   //we will need a function to refresh the storyviewer page when a new story is added
   componentDidMount() {
     get("/api/storyById", {story_id: this.props.location.state.story_id}).then((foundStory) => {
@@ -68,7 +77,7 @@ class StoryViewer extends Component {
         return (
             <div>
                 <h1> This is the Story Viewer Page!</h1>
-                <CardInput story_id = {this.props.location.state.story_id} page_num = {this.state.page_num}/>
+                <CardInput updateCard = {this.updateCard} story_id = {this.props.location.state.story_id} page_num = {this.state.page_num}/>
             </div>
         );
     }

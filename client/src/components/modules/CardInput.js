@@ -8,7 +8,7 @@ import { post } from "../../utilities";
  * Props:
  * story_id: story id from StoryViewer
  * page_num: page number of story from StoryViewer
- * addNewCard?????: this updates storyList in Browse when story added
+ * updateCard: this updates card in storyviewer when card added
  */
 class CardInput extends Component {
   constructor(props) {
@@ -30,7 +30,7 @@ class CardInput extends Component {
     post("/api/card", body).then((story) => {
       console.log("Added new card via card submit button");
       //later will code something here to tell StoryViewer to update
-      //this.props.addNewStory(story);
+      this.props.updateCard();
     });
   };
 
