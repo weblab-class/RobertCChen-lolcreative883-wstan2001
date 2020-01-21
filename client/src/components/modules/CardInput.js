@@ -61,6 +61,7 @@ class CardInput extends Component {
   render() {
     return (
         <div className="StoryCard-container">
+            <div> Now editing page {this.props.page_num}</div>
             <span>
                 <input
                 type="text"

@@ -68,7 +68,7 @@ class App extends Component {
               path="/browse"
             />
             <Profile
-              path="/profile"
+              path="/profile/:userId"
             />
             <StoryViewer
               //path="storyviewer/:story_id"

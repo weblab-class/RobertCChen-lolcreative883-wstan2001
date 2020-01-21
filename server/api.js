@@ -66,8 +66,12 @@ router.post("/story", auth.ensureLoggedIn, (req, res) => {
 });
 
 router.get("/storyById", (req, res) => {
-  console.log(req.query.story_id);
   StoryObj.findOne({_id: req.query.story_id}).then((story) => res.send(story));
+});
+
+router.get("/storiesByUserId", (req, res) => {
+  console.log("Asking for stories edited by user " + req.query.userId);
+  StoryObj.find({"pages.creator_id": req.query.userId}).then((stories) => res.send(stories));
 });
 
 router.get("/stories", (req, res) =>{

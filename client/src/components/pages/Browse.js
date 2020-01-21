@@ -65,7 +65,6 @@ class Browse extends Component {
   }
 
   componentDidMount() {
-    //probably need to do an api call to grab data here
     get("/api/stories").then((storyObjs) => {
       this.setState({
         storyList: storyObjs,

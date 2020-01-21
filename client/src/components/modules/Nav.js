@@ -33,14 +33,11 @@ class Nav extends Component {
             <Link to="/browse" /*className="NavBar-link"*/>
                 Browse
             </Link>
-            {/*this.props.userId && (
-                <Link to={`/profile/${this.props.userId}`} className="NavBar-link">
+            {this.props.userId && (
+                <Link to={`/profile/${this.props.userId}`}>
                 Profile
                 </Link>
-            )*/}
-            <Link to="/profile">
-                Profile
-            </Link>
+            )}
             {this.props.userId ? (
                 <GoogleLogout
                 clientId={GOOGLE_CLIENT_ID}
