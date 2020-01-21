@@ -38,28 +38,11 @@ class StoryViewer extends Component {
     };
   }
 
-  // exact copy of componentDidMount
+  // exact copy of componentDidMount, but with no page jumping
   updateCard = (card) => {
     get("/api/storyById", {story_id: this.props.location.state.story_id}).then((foundStory) => {
-        let code = "";
-        let num  = this.props.location.state.start_page;
-        while (num > 0) {
-            if (num % 3 === 1) {
-                code += "U";
-            }
-            else if (num % 3 === 2) {
-                code += "R";
-            }
-            else if (num % 3 === 0){
-                code += "D";
-            }
-            num = Math.floor((num - 1) / 3);
-        }
-        code = 
         this.setState({
             story: foundStory,
-            page_num: this.props.location.state.start_page,
-
         });
     });
   };
@@ -106,8 +89,25 @@ class StoryViewer extends Component {
   //we will need a function to refresh the storyviewer page when a new story is added
   componentDidMount() {
     get("/api/storyById", {story_id: this.props.location.state.story_id}).then((foundStory) => {
+        let code = "";
+        let num  = this.props.location.state.start_page;
+        while (num > 0) {
+            if (num % 3 === 1) {
+                code += "U";
+            }
+            else if (num % 3 === 2) {
+                code += "R";
+            }
+            else if (num % 3 === 0){
+                code += "D";
+            }
+            num = Math.floor((num - 1) / 3);
+        }
+        code = code.split('').reverse().join('');
         this.setState({
             story: foundStory,
+            page_num: this.props.location.state.start_page,
+            page_code: code,
         });
     });
   }
