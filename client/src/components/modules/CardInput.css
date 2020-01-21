@@ -12,3 +12,9 @@
 .Author {
     font-size: 24px;
 }
+
+.Text-Input {
+    white-space: pre-wrap;
+    height: 290px;
+    width: 700px;
+}

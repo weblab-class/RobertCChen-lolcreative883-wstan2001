@@ -5,6 +5,10 @@
     background-color: #E5ECF4;
 }
 
+.CardContent {
+    white-space: pre-wrap;
+}
+
 .Title {
     font-size: 40px;
 }

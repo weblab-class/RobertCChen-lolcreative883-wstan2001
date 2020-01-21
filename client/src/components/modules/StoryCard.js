@@ -26,7 +26,7 @@ class StoryCard extends Component {
             <span className="Title">{this.props.card.cardTitle}</span>
             <span className="Author"> by {this.props.card.creator_name}</span>
             <hr/>
-            <div> {this.props.card.content} </div>
+            <div className="CardContent"> {this.props.card.content} </div>
         </div>
       );
     }

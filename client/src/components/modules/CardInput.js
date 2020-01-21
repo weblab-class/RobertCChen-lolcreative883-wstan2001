@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import "./CardInput.css";
+
 import { post } from "../../utilities";
 
 /**
@@ -61,7 +63,7 @@ class CardInput extends Component {
 
   render() {
     return (
-        <div className="StoryCard-container">
+        <div className="CardInput-container">
             <div> Now editing page {this.props.page_num}</div>
             <div> Current page code {this.props.page_code}</div>
             <span>
@@ -74,11 +76,12 @@ class CardInput extends Component {
             </span>
             <hr/>
             <div> 
-                <input
+                <textarea
                 type="text"
                 placeholder={"Enter Card Content Here"}
                 value={this.state.valueContent}
                 onChange={this.handleChangeContent}
+                className = "Text-Input"
                 />
             </div>
             <div /*className="u-flex"*/>
