@@ -11,6 +11,7 @@ import { get } from "../../utilities";
  * Props: from Browse or Profile
  * story_id: id of story to get
  * userId: tbh not sure if this necessary
+ * start_page: page to start on
  * 
  * storyCard field reference:
  *  cardTitle:
@@ -23,7 +24,7 @@ import { get } from "../../utilities";
  * State: To store where we're at
  * story: the current story
  * page_num: self explanatory
- * pageCode: ie UUR
+ * page_code: ie UUR
  * 
  * CAREFUL: the "done" prop might be outdated, so "done" state takes precedence
  */
@@ -33,54 +34,70 @@ class StoryViewer extends Component {
     this.state = {
         story: undefined,
         page_num: 0,
-        pageCode: "",
+        page_code: "",
     };
   }
 
   // exact copy of componentDidMount
   updateCard = (card) => {
     get("/api/storyById", {story_id: this.props.location.state.story_id}).then((foundStory) => {
+        let code = "";
+        let num  = this.props.location.state.start_page;
+        while (num > 0) {
+            if (num % 3 === 1) {
+                code += "U";
+            }
+            else if (num % 3 === 2) {
+                code += "R";
+            }
+            else if (num % 3 === 0){
+                code += "D";
+            }
+            num = Math.floor((num - 1) / 3);
+        }
+        code = 
         this.setState({
             story: foundStory,
+            page_num: this.props.location.state.start_page,
+
         });
     });
   };
 
   handleSubmit = (event) => {
-    console.log("button pressed");
     if (event.target.getAttribute("type") === "B")
     {
         if (this.state.page_num > 0) {
             this.setState({
                 page_num: Math.floor((this.state.page_num - 1)/ 3),
-                pageCode: this.state.pageCode.substring(0, this.state.pageCode.length - 1),
+                page_code: this.state.page_code.substring(0, this.state.page_code.length - 1),
             });
         }
     }
     else if (event.target.getAttribute("type") === "U")
     {
-        if (this.state.pageCode.length < 3) {
+        if (this.state.page_code.length < 3) {
             this.setState({
                 page_num: this.state.page_num * 3 + 1,
-                pageCode: this.state.pageCode + "U",
+                page_code: this.state.page_code + "U",
             });
         }
     }
     else if (event.target.getAttribute("type") === "R")
     {
-        if (this.state.pageCode.length < 3) {
+        if (this.state.page_code.length < 3) {
             this.setState({
                 page_num: this.state.page_num * 3 + 2,
-                pageCode: this.state.pageCode + "R",
+                page_code: this.state.page_code + "R",
             });
         }
     }
     else if (event.target.getAttribute("type") === "D")
     {
-        if (this.state.pageCode.length < 3) {
+        if (this.state.page_code.length < 3) {
             this.setState({
                 page_num: this.state.page_num * 3 + 3,
-                pageCode: this.state.pageCode + "D",
+                page_code: this.state.page_code + "D",
             });
         }
     }
@@ -129,7 +146,7 @@ class StoryViewer extends Component {
             return (
                 <div>
                     <h1> This is the Story Viewer Page!</h1>
-                    <CardInput updateCard = {this.updateCard} story_id = {this.props.location.state.story_id} page_num = {this.state.page_num}/>
+                    <CardInput updateCard = {this.updateCard} story_id = {this.props.location.state.story_id} page_num = {this.state.page_num} page_code = {this.state.page_code}/>
                     <button onClick={this.handleSubmit} type="B">
                     Back
                     </button>

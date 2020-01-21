@@ -28,7 +28,8 @@ class Skeleton extends Component {
   render() {
     return (
       <>
-        <h1>Welcom to Melting Plot!</h1>
+        <h1>Welcome to Melting Plot!</h1>
+        <img src="../../../dist/meltingplot.png"/>
       </>
     );
   }

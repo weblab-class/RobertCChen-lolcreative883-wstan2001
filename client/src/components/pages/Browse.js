@@ -84,6 +84,7 @@ class Browse extends Component {
         <Link to={"/storyviewer"} state={{
           story_id: s._id,
           userId: this.props.userId,
+          start_page: 0,
         }}> {s.storyTitle} </Link>
       </div>
     ));

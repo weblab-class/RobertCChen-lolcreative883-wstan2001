@@ -8,6 +8,7 @@ import { post } from "../../utilities";
  * Props:
  * story_id: story id from StoryViewer
  * page_num: page number of story from StoryViewer
+ * page_code: page code from StoryViewer
  * updateCard: this updates card in storyviewer when card added
  */
 class CardInput extends Component {
@@ -62,6 +63,7 @@ class CardInput extends Component {
     return (
         <div className="StoryCard-container">
             <div> Now editing page {this.props.page_num}</div>
+            <div> Current page code {this.props.page_code}</div>
             <span>
                 <input
                 type="text"
