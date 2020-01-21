@@ -14,6 +14,7 @@ class Profile extends Component {
     super(props);
     this.state = {
       storyList: [],
+      firstPages: [],
     };
   }
 
@@ -22,16 +23,28 @@ class Profile extends Component {
       this.setState({
         storyList: foundStories,
       });
+      let newFP = [];
+      console.log(this.state.storyList.length);
+      for (let i = 0; i < this.state.storyList.length; i++) {
+        let j  = 0;
+        while (this.state.storyList[i].pages[j].creator_id != this.props.userId) {
+          j++;
+        }
+        newFP.push(j);
+      }
+      this.setState({
+        firstPages: newFP,
+      });
     });
   }
 
   render() {
-    const stories = this.state.storyList.map((s) => (
+    const stories = this.state.storyList.map((s, i) => (
       <div key = {s._id}>
         <Link to = "/storyviewer" state ={{
           story_id: s._id,
           userId: this.props.userId,
-          start_page: 0,
+          start_page: this.state.firstPages[i],
         }}>
           {s.storyTitle}
         </Link>
