@@ -24,17 +24,21 @@ class Profile extends Component {
         storyList: foundStories,
       });
       let newFP = [];
-      console.log(this.state.storyList.length);
       for (let i = 0; i < this.state.storyList.length; i++) {
         let j  = 0;
-        while (this.state.storyList[i].pages[j].creator_id != this.props.userId) {
+        while (!this.state.storyList[i].pages[j] || this.state.storyList[i].pages[j].creator_id != this.props.userId) {
           j++;
+          if (j > 200){
+            j = 0;
+            break;
+          }
         }
         newFP.push(j);
       }
       this.setState({
         firstPages: newFP,
       });
+      console.log(newFP);
     });
   }
 

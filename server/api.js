@@ -71,7 +71,7 @@ router.get("/storyById", (req, res) => {
 
 router.get("/storiesByUserId", (req, res) => {
   console.log("Asking for stories edited by user " + req.query.userId);
-  StoryObj.find({"pages.creator_id": req.query.userId}).then((stories) => res.send(stories));
+  StoryObj.find({$or: [{"pages.creator_id": req.query.userId}, {author_id: req.query.userId}]}).then((stories) => res.send(stories));
 });
 
 router.get("/stories", (req, res) =>{
