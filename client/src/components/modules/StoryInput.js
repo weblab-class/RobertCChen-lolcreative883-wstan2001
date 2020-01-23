@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import { post } from "../../utilities";
 
+import "./StoryInput.css";
+
 /**
  * StoryInput is a parent component for story input components
  *
@@ -45,21 +47,22 @@ class StoryInput extends Component {
 
   render() {
     return (
-      <div /*className="u-flex"*/>
+      <div>
         <input
           type="text"
-          placeholder={"Enter Story Here"}
+          placeholder={"Enter Title Here"}
           value={this.state.value}
           onChange={this.handleChange}
-          //className="NewPostInput-input"
+          className="Input-Bar"
         />
         <button
           type="submit"
           //className="NewPostInput-button u-pointer"
           value="Submit"
           onClick={this.handleSubmit}
+          className="Submit"
         >
-          Submit
+          Add
         </button>
       </div>
     );

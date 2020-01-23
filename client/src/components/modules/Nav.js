@@ -23,39 +23,38 @@ class Nav extends Component {
 
     render() {
         return (
-            //TODO style these guys with CSS
-            <nav /*className="NavBar-container"*/>
-            <div /*className="NavBar-title u-inlineBlock"*/>Melting Plot</div>
-            <div /*className="NavBar-linkContainer u-inlineBlock"*/>
-            <Link to="/" /*className="NavBar-link"*/>
-                Skeleton
-            </Link>
-            <Link to="/browse" /*className="NavBar-link"*/>
-                Browse
-            </Link>
-            {this.props.userId && (
-                <Link to={`/profile/${this.props.userId}`}>
-                Profile
-                </Link>
-            )}
-            {this.props.userId ? (
-                <GoogleLogout
-                clientId={GOOGLE_CLIENT_ID}
-                buttonText="Logout"
-                onLogoutSuccess={this.props.handleLogout}
-                onFailure={(err) => console.log(err)}
-                className="NavBar-link NavBar-login"
-                />
-            ) : (
-                <GoogleLogin
-                clientId={GOOGLE_CLIENT_ID}
-                buttonText="Login"
-                onSuccess={this.props.handleLogin}
-                onFailure={(err) => console.log(err)}
-                className="NavBar-link NavBar-login"
-                />
-            )}
-            </div>
+            <nav className="NavBar-container">
+                <div className="NavBar-linkContainer">
+                    <span className="NavBar-title">Melting Plot   </span>
+                    <Link to="/" className="NavBar-link">
+                        Home
+                    </Link>
+                    <Link to="/browse" className="NavBar-link">
+                        Browse
+                    </Link>
+                    {this.props.userId && (
+                        <Link to={`/profile/${this.props.userId}`} className="NavBar-link">
+                        Profile
+                        </Link>
+                    )}
+                    {this.props.userId ? (
+                        <GoogleLogout
+                        clientId={GOOGLE_CLIENT_ID}
+                        buttonText="Logout"
+                        onLogoutSuccess={this.props.handleLogout}
+                        onFailure={(err) => console.log(err)}
+                        className="NavBar-link NavBar-login"
+                        />
+                    ) : (
+                        <GoogleLogin
+                        clientId={GOOGLE_CLIENT_ID}
+                        buttonText="Login"
+                        onSuccess={this.props.handleLogin}
+                        onFailure={(err) => console.log(err)}
+                        className="NavBar-link NavBar-login"
+                        />
+                    )}
+                </div>
             </nav>
         );
     }

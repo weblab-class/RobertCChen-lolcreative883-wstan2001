@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Poiret+One|Gayathri|Girassol|Muli&display=swap');
+
+.Input-Bar {
+  font-family: 'Muli', sans-serif;
+  opacity: 0.4;
+  font-size: 16px;
+  height: 25px;
+  border-radius: 10px;
+}
+
+.Submit {
+    font-family: 'Muli', sans-serif;
+    opacity: 0.8;
+    font-size: 16px;
+    height: 25px;
+    border-radius: 10px;
+    transition: 0.6s;
+    background-color: #034078;
+    color: #E5ECF4;
+}
+
+.Submit:hover {
+    background-color: #9198E5;
+}

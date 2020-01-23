@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
-import Skeleton from "./pages/Skeleton.js";
+import Home from "./pages/Home.js";
 import Browse from "./pages/Browse.js";
 import Profile from "./pages/Profile.js";
 import Nav from "./modules/Nav.js";
@@ -58,7 +58,7 @@ class App extends Component {
         />
         <div /*className = App-Container*/ >
           <Router>
-            <Skeleton
+            <Home
               path="/"
               handleLogin={this.handleLogin}
               handleLogout={this.handleLogout}

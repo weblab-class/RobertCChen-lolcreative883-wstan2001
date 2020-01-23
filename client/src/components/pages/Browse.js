@@ -3,6 +3,7 @@ import { Link } from "@reach/router";
 import StoryInput from "../modules/StoryInput.js";
 
 import { get, post } from "../../utilities";
+import "./Browse.css";
 
 
 /**
@@ -15,52 +16,7 @@ class Browse extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        storyList: [
-        {
-            storyTitle: "Chicken Tenders",
-            _id: "CT",
-            author: "not Stanley Wang",
-            author_id: "SW",
-            pages: [
-              {cardTitle: "Chicken Tenders 0",
-               creator_id: "340",
-               creator_name: "Shrek",
-               content: "Gimme gimme chicken tendies, Be they crispy or from Wendys.",
-               done: true,
-              },
-              {cardTitle: "Chicken Tenders 1",
-               creator_id: "341",
-               creator_name: "Fiona",
-               content: "Spend my hard-earned good-boy points, on Kid's Meal ball pit burger joints.",
-               done: true,
-              },
-              {cardTitle: "Chicken Tenders 2",
-               creator_id: "3325",
-               creator_name: "Donkey",
-               content: "Mummy lifts me to the car, To find me tendies near and far.",
-               done: true,
-              },
-              {cardTitle: "Chicken Tenders 3",
-               creator_id: "37456",
-               creator_name: "Farquaad",
-               content: "Enjoy my tasty tendie treats, in comfy big boy booster seats.",
-               done: true,
-              },
-              {cardTitle: "Chicken Tenders 4",
-               creator_id: "31568",
-               creator_name: "Gingy",
-               content: "McDonald's, Hardee's, Popeye's, Cane's, But of my tendies none remains.",
-               done: true,
-              },
-              {cardTitle: "Chicken Tenders 5",
-               creator_id: "5468",
-               creator_name: "FG",
-               content: "She tries to make me take a nappy, But sleeping doesn't make me happy.",
-               done: true,
-              },
-            ],
-        },
-      ],
+        storyList: undefined,
     };
   }
 
@@ -79,9 +35,16 @@ class Browse extends Component {
   }
 
   render() {
+    if (!this.state.storyList) {
+      return (
+        <div>
+          <span className="Regular-Text"> Now Fetching Stories... </span>
+        </div>
+      );
+    }
     let stories = this.state.storyList.map(s => (
       <div key={s._id}>
-        <Link to={"/storyviewer"} state={{
+        <Link to={"/storyviewer"} className="Story-link" state={{
           story_id: s._id,
           userId: this.props.userId,
           start_page: 0,
@@ -90,10 +53,17 @@ class Browse extends Component {
     ));
     return (
       <div>
-        <h1>This is the browsing page</h1>
-        {stories}
-        <h1> Now here is a submit button! </h1>
-        <StoryInput addNewStory = {this.addNewStory}/>
+        <div className="Block">
+          <h1 className="Heading">All Stories</h1>
+          {stories}
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <div className="Block">
+          <h1 className = "Heading"> Add a Story </h1>
+          <StoryInput addNewStory = {this.addNewStory}/>
+        </div>
       </div>
     );
   }

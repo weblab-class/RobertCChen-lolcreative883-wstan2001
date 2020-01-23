@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 
 import "../../utilities.css";
-import "./Skeleton.css";
+import "./Home.css";
 import Image from "../../public/meltingplot.png";
 
 //DONE: REPLACE WITH YOUR OWN CLIENT_ID
@@ -15,7 +15,7 @@ const GOOGLE_CLIENT_ID = "1085650892312-g9vj8eqaif6iug3qu3863i47ebj2hg86.apps.go
 * handleLogout: 
 * userId: user's ID, from App
 */
-class Skeleton extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
     // Initialize Default State
@@ -29,11 +29,11 @@ class Skeleton extends Component {
   render() {
     return (
       <>
-        <h1>Welcome to Melting Plot!</h1>
-        <img src={Image}/>
+        <h1 className="Title">Welcome.</h1>
+        <img src={Image} className="Logo"/>
       </>
     );
   }
 }
 
-export default Skeleton;
+export default Home;

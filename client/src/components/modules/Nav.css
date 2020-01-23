@@ -1,22 +1,38 @@
+@import url('https://fonts.googleapis.com/css?family=Poiret+One&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Gayathri|Girassol&display=swap');
+
 .NavBar-container {
   padding: var(--s) var(--m);
-  background-color: var(--primary);
+  background-color: #034078;
+  background: linear-gradient(#034078, #9198e5);
+  border-radius: 20px;
+  margin: var(--m) var(--m);
+  height: 60px;
 }
 
 .NavBar-title {
-  color: var(--white);
-  font-size: 20px;
-}
-
-.NavBar-linkContainer {
-  margin-left: var(--l);
+  color: #E5ECF4;
+  font-family: 'Poiret One', cursive;
+  font-size: 32px;
+  font-weight: 1000;
+  white-space: pre;
 }
 
 .NavBar-link,
 .NavBar-link:visited {
-  color: var(--white);
+  color: #E5ECF4;
+  font-family: 'Gayathri', sans-serif;
   opacity: 0.6;
   text-decoration: none;
+  padding-top: 8px;
+  transition: 0.6s
+}
+
+.NavBar-linkContainer {
+  display: flex;
+  margin: 10px 20px;
+  align-items: center;
 }
 
 .NavBar-link:hover {

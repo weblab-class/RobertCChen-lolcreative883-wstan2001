@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Poiret+One&display=swap');
+
+.Title {
+    font-size: 60px;
+    font-family: 'Poiret One', cursive;
+    text-align: center;
+    animation: fadeIn 2s;
+}
+
+.Logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    height: auto;
+    animation: fadeInDelay 3s;
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes fadeInDelay {
+    0% {opacity: 0;}
+    33% {opacity: 0;}
+    100% {opacity: 1;}
+}
