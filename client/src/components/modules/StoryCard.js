@@ -95,8 +95,15 @@ class StoryCard extends Component {
         console.log(thing.didLike);
       });
     }
+    else {
+      if (this.state.liked) {
+        this.setState({
+          liked: false,
+        });
+      }
+    }
   }
-  
+
   render() {
     if (this.props.card.done) {
       return (
