@@ -49,7 +49,7 @@ class Profile extends Component {
     return (
       <div>
         <div className="Block">
-          <h1 className="Heading">This is your profile</h1>
+          <h1 className="Heading">Profile of {this.props.userName}</h1>
         </div>
         <hr/>
         <div className="Block">

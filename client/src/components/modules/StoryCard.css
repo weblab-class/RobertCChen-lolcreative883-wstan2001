@@ -24,9 +24,19 @@
     color: #034078;
 }
 
+.Button-unliked:hover {
+    background-color: #034078;
+    color: #E5ECF4;
+}
+
 .Button-liked {
     background-color: #034078;
     color: #E5ECF4;
+}
+
+.Button-liked:hover {
+    background-color: white;
+    color: #034078;
 }
 
 .Title {

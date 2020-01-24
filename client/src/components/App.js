@@ -22,6 +22,7 @@ class App extends Component {
     super(props);
     this.state = {
       userId: undefined,
+      userName: undefined,
     };
   }
 
@@ -29,7 +30,7 @@ class App extends Component {
     get("/api/whoami").then((user) => {
       if (user._id) {
         // they are registed in the database, and currently logged in.
-        this.setState({ userId: user._id });
+        this.setState({ userId: user._id, userName: user.name });
       }
     });
   }
@@ -38,13 +39,13 @@ class App extends Component {
     console.log(`Logged in as ${res.profileObj.name}`);
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
-      this.setState({ userId: user._id });
+      this.setState({ userId: user._id, userName: user.name });
       post("/api/initsocket", { socketid: socket.id });
     });
   };
 
   handleLogout = () => {
-    this.setState({ userId: undefined });
+    this.setState({ userId: undefined, userName: undefined, });
     post("/api/logout");
   };
 
@@ -69,9 +70,9 @@ class App extends Component {
             />
             <Profile
               path="/profile/:userId"
+              userName = {this.state.userName}
             />
             <StoryViewer
-              //path="storyviewer/:story_id"
               path="/storyviewer/:story_id/:start_page"
               userId = {this.state.userId}
             />
