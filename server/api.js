@@ -113,6 +113,24 @@ router.post("/like", auth.ensureLoggedIn, (req, res) => {
   });
 });
 
+//req will specify story's id and page number
+router.post("/unlike", auth.ensureLoggedIn, (req, res) => {
+  StoryObj.findOne({_id: req.body.story_id}).then((story) => {
+    const index = story.pages[req.body.page_num].likes.findIndex((element) => element === req.user._id);
+    story.pages[req.body.page_num].likes.splice(index, 1);
+    story.pages[req.body.page_num] = {
+      likes: story.pages[req.body.page_num].likes,
+      cardTitle: story.pages[req.body.page_num].cardTitle,
+      creator_name: story.pages[req.body.page_num].creator_name,
+      creator_id: story.pages[req.body.page_num].creator_id,
+      page_num: story.pages[req.body.page_num].page_num,
+      content: story.pages[req.body.page_num].content,
+      done: story.pages[req.body.page_num].done,
+    };
+    story.save().then((s) => res.send(s));
+  });
+});
+
 //query specifies story's id and page number
 router.get("/getLikes", (req, res) => {
   StoryObj.findOne({_id: req.query.story_id}).then((story) => {

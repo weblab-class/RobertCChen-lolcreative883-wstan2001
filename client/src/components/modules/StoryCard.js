@@ -29,7 +29,6 @@ class StoryCard extends Component {
 
   handleSubmit = (event) => {
     if (this.props.userId && this.state.liked === false) {
-      console.log("you liked it");
       post("/api/like", {
         story_id: this.props.story_id, 
         page_num: this.props.card.page_num,
@@ -37,6 +36,17 @@ class StoryCard extends Component {
         this.setState({
           numLikes: this.state.numLikes + 1,
           liked: true,
+        });
+      });
+    }
+    else if (this.props.userId && this.state.liked === true) {
+      post("/api/unlike", {
+        story_id: this.props.story_id, 
+        page_num: this.props.card.page_num,
+      }).then((story) => {
+        this.setState({
+          numLikes: this.state.numLikes - 1,
+          liked: false,
         });
       });
     }
