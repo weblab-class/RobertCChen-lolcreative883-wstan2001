@@ -3,6 +3,7 @@ import { Link } from "@reach/router";
 
 
 import { get } from "../../utilities";
+import "./Profile.css";
 
 
 /**s
@@ -45,7 +46,7 @@ class Profile extends Component {
   render() {
     const stories = this.state.storyList.map((s, i) => (
       <div key = {s._id}>
-        <Link to = "/storyviewer" state ={{
+        <Link to = "/storyviewer" className="Story-link" state ={{
           story_id: s._id,
           userId: this.props.userId,
           start_page: this.state.firstPages[i],
@@ -56,10 +57,15 @@ class Profile extends Component {
     ));
     return (
       <div>
-        <h1>This is your profile</h1>
-        <h2> Your edited stories: </h2>
+        <div className="Block">
+          <h1 className="Heading">This is your profile</h1>
+        </div>
         <hr/>
-        {stories}
+        <div className="Block">
+          <h2 className="Heading">Your edited stories:</h2>
+          {stories}
+        </div>
+        
       </div>
     );
   }
