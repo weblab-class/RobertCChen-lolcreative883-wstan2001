@@ -20,13 +20,10 @@ class Profile extends Component {
 
   componentDidMount() {
     get("/api/storiesByUserId", {userId: this.props.userId}).then((foundStories) => {
-      this.setState({
-        storyList: foundStories,
-      });
       let newFP = [];
-      for (let i = 0; i < this.state.storyList.length; i++) {
+      for (let i = 0; i < foundStories.length; i++) {
         let j  = 0;
-        while (!this.state.storyList[i].pages[j] || this.state.storyList[i].pages[j].creator_id != this.props.userId) {
+        while (!foundStories[i].pages[j] || foundStories[i].pages[j].creator_id != this.props.userId) {
           j++;
           if (j > 200){
             j = 0;
@@ -36,22 +33,16 @@ class Profile extends Component {
         newFP.push(j);
       }
       this.setState({
+        storyList: foundStories,
         firstPages: newFP,
       });
-      console.log(newFP);
     });
   }
 
   render() {
     const stories = this.state.storyList.map((s, i) => (
       <div key = {s._id}>
-        <Link to = "/storyviewer" state ={{
-          story_id: s._id,
-          userId: this.props.userId,
-          start_page: this.state.firstPages[i],
-        }}>
-          {s.storyTitle}
-        </Link>
+        <Link to={"/storyviewer/" + s._id + "/" + this.state.firstPages[i].toString()} > {s.storyTitle} </Link>
       </div>
     ));
     return (

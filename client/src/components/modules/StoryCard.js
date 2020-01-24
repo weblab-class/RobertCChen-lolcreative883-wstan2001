@@ -44,7 +44,6 @@ class StoryCard extends Component {
 
   componentDidMount() {
     //need to check whether we have like this story
-    console.log("Comp Mount called");
     get("/api/getLikes", {
       story_id: this.props.story_id,
       page_num: this.props.card.page_num,

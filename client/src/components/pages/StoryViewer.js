@@ -9,9 +9,9 @@ import { get } from "../../utilities";
  * Story Viewer for checking out stories
  * 
  * Props: from Browse or Profile
- * story_id: id of story to get
- * userId: tbh not sure if this necessary
- * start_page: page to start on
+ * story_id: from Browse/Profile
+ * userId: this is from App
+ * start_page: from Browse/Profile
  * 
  * storyCard field reference:
  *  cardTitle:
