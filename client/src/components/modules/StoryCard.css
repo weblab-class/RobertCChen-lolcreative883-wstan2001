@@ -10,6 +10,25 @@
     height: 315px;
 }
 
+.Button {
+    color: #E5ECF4;
+    height: 20px;
+    width: 40px;
+    border-radius: 20px;
+    opacity: 0.8;
+    transition: 1s;
+}
+
+.Button-unliked {
+    background-color: white;
+    color: #034078;
+}
+
+.Button-liked {
+    background-color: #034078;
+    color: #E5ECF4;
+}
+
 .Title {
     font-size: 40px;
 }

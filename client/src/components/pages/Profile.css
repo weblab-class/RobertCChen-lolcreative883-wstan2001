@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Poiret+One|Gayathri|Girassol|Muli&display=swap');
+
+.Heading {
+  font-family: 'Gayathri', sans-serif;
+  opacity: 1;
+  font-size: 32px;
+  color: #034078
+}
+
+.Story-link,
+.Story-link:visited {
+    font-family: 'Muli', sans-serif;
+    text-decoration: none;
+    opacity: 0.8;
+    color: #034078;
+    transition: 0.6s;
+}
+
+.Story-link:hover {
+    color: #9198E5;
+}
+
+.Block {
+    margin: var(--l) var(--l);
+}
+
+.Regular-Text{
+    font-family: "Muli", sans-serif;
+
+}

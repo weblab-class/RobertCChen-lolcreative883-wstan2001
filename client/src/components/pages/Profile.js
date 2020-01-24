@@ -3,6 +3,7 @@ import { Link } from "@reach/router";
 
 
 import { get } from "../../utilities";
+import "./Profile.css";
 
 
 /**s
@@ -47,10 +48,15 @@ class Profile extends Component {
     ));
     return (
       <div>
-        <h1>This is your profile</h1>
-        <h2> Your edited stories: </h2>
+        <div className="Block">
+          <h1 className="Heading">This is your profile</h1>
+        </div>
         <hr/>
-        {stories}
+        <div className="Block">
+          <h2 className="Heading">Your edited stories:</h2>
+          {stories}
+        </div>
+        
       </div>
     );
   }

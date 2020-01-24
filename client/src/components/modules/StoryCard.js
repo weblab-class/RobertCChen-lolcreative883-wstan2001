@@ -54,6 +54,7 @@ class StoryCard extends Component {
 
   componentDidMount() {
     //need to check whether we have like this story
+    console.log("component mounted");
     get("/api/getLikes", {
       story_id: this.props.story_id,
       page_num: this.props.card.page_num,
@@ -79,6 +80,23 @@ class StoryCard extends Component {
     }
   }
 
+  componentDidUpdate() {
+    if (this.props.userId){
+      get("/api/isLiked", {
+        story_id: this.props.story_id,
+        page_num: this.props.card.page_num,
+      }).then((thing) => {
+        if (this.state.liked !== thing.didLike) {
+          this.setState({
+            liked: thing.didLike,
+          });
+        }
+        console.log("here's if you liked the story");
+        console.log(thing.didLike);
+      });
+    }
+  }
+  
   render() {
     if (this.props.card.done) {
       return (
@@ -87,10 +105,10 @@ class StoryCard extends Component {
             <span className="Author"> by {this.props.card.creator_name}</span>
             <hr/>
             <div className="CardContent"> {this.props.card.content} </div>
-            <span> Number of likes: {this.state.numLikes} </span>
-            <button onClick={this.handleSubmit}>
+            <button className={this.state.liked ? "Button Button-liked": "Button Button-unliked"} onClick={this.handleSubmit}>
                 Like
             </button>
+            <span> {this.state.numLikes} </span>
         </div>
       );
     }
