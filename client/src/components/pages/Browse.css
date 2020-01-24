@@ -22,9 +22,25 @@
 
 .Block {
     margin: var(--l) var(--l);
+    animation: fadeIn 2s;
+}
+
+.BlockDelay {
+    margin: var(--l) var(--l);
+    animation: fadeInDelay 3s;
 }
 
 .Regular-Text{
     font-family: "Muli", sans-serif;
+}
 
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes fadeInDelay {
+    0% {opacity: 0;}
+    33% {opacity: 0;}
+    100% {opacity: 1;}
 }

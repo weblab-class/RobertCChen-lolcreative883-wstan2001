@@ -11,6 +11,7 @@ const StoryObjSchema = new mongoose.Schema({
         page_num: Number,
         content: String,
         done: Boolean,
+        likes: [String],
     }],
 });
 

@@ -54,6 +54,7 @@ router.post("/story", auth.ensureLoggedIn, (req, res) => {
       page_num: i,
       content: undefined,
       done: false,
+      likes: undefined,
     }]);
   }
   const newStoryObj = new StoryObj({
@@ -90,10 +91,46 @@ router.post("/card", auth.ensureLoggedIn, (req, res) => {
       page_num: req.body.page_num,
       content: req.body.content,
       done: true,
+      likes: [],
     };
     story.save().then((s) => res.send(s));
   });
-  //StoryObj.updateOne({storyTitle: "Story with Pages"}, {$set: {"pages.0.cardTitle": req.body.cardTitle}}).then((s) => res.send(s));
+});
+
+//req will specify story's id and page number
+router.post("/like", auth.ensureLoggedIn, (req, res) => {
+  StoryObj.findOne({_id: req.body.story_id}).then((story) => {
+    story.pages[req.body.page_num] = {
+      likes: story.pages[req.body.page_num].likes.concat([req.user._id]),
+      cardTitle: story.pages[req.body.page_num].cardTitle,
+      creator_name: story.pages[req.body.page_num].creator_name,
+      creator_id: story.pages[req.body.page_num].creator_id,
+      page_num: story.pages[req.body.page_num].page_num,
+      content: story.pages[req.body.page_num].content,
+      done: story.pages[req.body.page_num].done,
+    };
+    story.save().then((s) => res.send(s));
+  });
+});
+
+//query specifies story's id and page number
+router.get("/getLikes", (req, res) => {
+  StoryObj.findOne({_id: req.query.story_id}).then((story) => {
+    //have to send back an object!
+    res.send({num: story.pages[req.query.page_num].likes.length});
+  });
+});
+
+//query specifies story's id and page number
+router.get("/isLiked", auth.ensureLoggedIn, (req, res) => {
+  StoryObj.findOne({_id: req.query.story_id}).then((story) => {
+    //have to send back an object!
+    const liked = story.pages[req.query.page_num].likes.includes(req.user._id);
+    console.log(req.user._id);
+    console.log(story.pages[req.query.page_num].likes);
+    console.log(liked);
+    res.send({didLike: liked});
+  });
 });
 
 // anything else falls to this "not found" case

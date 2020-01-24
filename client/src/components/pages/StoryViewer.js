@@ -126,7 +126,7 @@ class StoryViewer extends Component {
             return (
                 <div>
                     <h1>This is the Story Viewer Page!</h1>
-                    {<StoryCard card={curCard}/>}
+                    {<StoryCard card={curCard} story_id = {this.props.location.state.story_id} userId = {this.props.location.state.userId}/>}
                     <button onClick={this.handleSubmit} type="B">
                     Back
                     </button>

@@ -60,7 +60,7 @@ class Browse extends Component {
         <br/>
         <br/>
         <br/>
-        <div className="Block">
+        <div className="BlockDelay">
           <h1 className = "Heading"> Add a Story </h1>
           <StoryInput addNewStory = {this.addNewStory}/>
         </div>
