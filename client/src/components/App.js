@@ -72,7 +72,7 @@ class App extends Component {
             />
             <StoryViewer
               //path="storyviewer/:story_id"
-              path="/storyviewer"
+              path="/storyviewer/:story_id/:start_page"
               userId = {this.state.userId}
             />
             <NotFound default />

@@ -44,11 +44,7 @@ class Browse extends Component {
     }
     let stories = this.state.storyList.map(s => (
       <div key={s._id}>
-        <Link to={"/storyviewer"} className="Story-link" state={{
-          story_id: s._id,
-          userId: this.props.userId,
-          start_page: 0,
-        }}> {s.storyTitle} </Link>
+        <Link to={"/storyviewer/" + s._id + "/0"} className="Story-link" > {s.storyTitle} </Link>
       </div>
     ));
     return (

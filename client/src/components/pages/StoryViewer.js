@@ -40,7 +40,7 @@ class StoryViewer extends Component {
 
   // exact copy of componentDidMount, but with no page jumping
   updateCard = (card) => {
-    get("/api/storyById", {story_id: this.props.location.state.story_id}).then((foundStory) => {
+    get("/api/storyById", {story_id: this.props.story_id}).then((foundStory) => {
         this.setState({
             story: foundStory,
         });
@@ -88,9 +88,9 @@ class StoryViewer extends Component {
 
   //we will need a function to refresh the storyviewer page when a new story is added
   componentDidMount() {
-    get("/api/storyById", {story_id: this.props.location.state.story_id}).then((foundStory) => {
+    get("/api/storyById", {story_id: this.props.story_id}).then((foundStory) => {
         let code = "";
-        let num  = this.props.location.state.start_page;
+        let num  = this.props.start_page;
         while (num > 0) {
             if (num % 3 === 1) {
                 code += "U";
@@ -106,7 +106,7 @@ class StoryViewer extends Component {
         code = code.split('').reverse().join('');
         this.setState({
             story: foundStory,
-            page_num: this.props.location.state.start_page,
+            page_num: this.props.start_page,
             page_code: code,
         });
     });
@@ -123,10 +123,12 @@ class StoryViewer extends Component {
         }
         const curCard = this.state.story.pages[this.state.page_num];
         if (curCard.done) {
+            console.log("switch pages to");
+            console.log(curCard.page_num);
             return (
                 <div>
                     <h1>This is the Story Viewer Page!</h1>
-                    {<StoryCard card={curCard} story_id = {this.props.location.state.story_id} userId = {this.props.location.state.userId}/>}
+                    <StoryCard key={curCard._id} card={curCard} story_id = {this.props.story_id} userId = {this.props.userId}/>
                     <button onClick={this.handleSubmit} type="B">
                     Back
                     </button>
@@ -146,7 +148,7 @@ class StoryViewer extends Component {
             return (
                 <div>
                     <h1> This is the Story Viewer Page!</h1>
-                    <CardInput updateCard = {this.updateCard} story_id = {this.props.location.state.story_id} page_num = {this.state.page_num} page_code = {this.state.page_code}/>
+                    <CardInput updateCard = {this.updateCard} story_id = {this.props.story_id} page_num = {this.state.page_num} page_code = {this.state.page_code}/>
                     <button onClick={this.handleSubmit} type="B">
                     Back
                     </button>

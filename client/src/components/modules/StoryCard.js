@@ -29,6 +29,7 @@ class StoryCard extends Component {
 
   handleSubmit = (event) => {
     if (this.props.userId && this.state.liked === false) {
+      console.log("you liked it");
       post("/api/like", {
         story_id: this.props.story_id, 
         page_num: this.props.card.page_num,
@@ -43,6 +44,7 @@ class StoryCard extends Component {
 
   componentDidMount() {
     //need to check whether we have like this story
+    console.log("Comp Mount called");
     get("/api/getLikes", {
       story_id: this.props.story_id,
       page_num: this.props.card.page_num,
@@ -59,7 +61,12 @@ class StoryCard extends Component {
         this.setState({
           liked: thing.didLike,
         });
+        console.log("here's if you liked the story");
+        console.log(thing.didLike);
       });
+    }
+    else{
+      console.log("not logged in");
     }
   }
 
