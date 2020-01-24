@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import StoryCard from "../modules/StoryCard.js";
+import StoryCardIcon from "../modules/StoryCardIcon.js";
 import CardInput from "../modules/CardInput.js";
 
 import { get } from "../../utilities";
-
+import "./StoryViewer.css";
 
 /**
  * Story Viewer for checking out stories
@@ -48,11 +49,63 @@ class StoryViewer extends Component {
   };
 
   handleSubmit = (event) => {
+
+    let leftSibling;
+    let rightSibling;
+    if (Number(this.state.page_num) % 3 === 0) {
+        leftSibling = Number(this.state.page_num) - 1;
+        rightSibling = Number(this.state.page_num) - 2;
+    } else if (Number(this.state.page_num) % 3 === 1) {
+        leftSibling = Number(this.state.page_num) + 2;
+        rightSibling = Number(this.state.page_num) + 1;
+    } else {
+        leftSibling = Number(this.state.page_num) - 1;
+        rightSibling = Number(this.state.page_num) + 1;
+    }
+
+    if (event.target.getAttribute("type") === "parent") {
+        if (Number(this.state.page_num) > 0) {
+            this.setState({
+                page_num: Math.floor((Number(this.state.page_num) - 1)/ 3),
+            });
+        }
+    } else if (event.target.getAttribute("type") === "leftSibling") {
+        if (Number(this.state.page_num) > 0) {
+            this.setState({
+                page_num: leftSibling,
+            });
+        }
+    } else if (event.target.getAttribute("type") === "rightSibling") {
+        if (Number(this.state.page_num) > 0) {
+            this.setState({
+                page_num: rightSibling,
+            });
+        }
+    } else if (event.target.getAttribute("type") === "leftChild") {
+        if (Number(this.state.page_num) <= 12) {
+            this.setState({
+                page_num: Number(this.state.page_num) * 3 + 1,
+            });
+        }
+    } else if (event.target.getAttribute("type") === "midChild") {
+        if (Number(this.state.page_num) <= 12) {
+            this.setState({
+                page_num: Number(this.state.page_num) * 3 + 2,
+            });
+        }
+    } else if (event.target.getAttribute("type") === "rightChild") {
+        if (Number(this.state.page_num) <= 12) {
+            this.setState({
+                page_num: Number(this.state.page_num) * 3 + 3,
+            });
+        }
+    }
+    
     if (event.target.getAttribute("type") === "B")
     {
-        if (this.state.page_num > 0) {
+        if (Number(this.state.page_num) > 0) {
             this.setState({
-                page_num: Math.floor((this.state.page_num - 1)/ 3),
+                page_num: Math.floor((Number(this.state.page_num) - 1)/ 3),
                 page_code: this.state.page_code.substring(0, this.state.page_code.length - 1),
             });
         }
@@ -61,7 +114,7 @@ class StoryViewer extends Component {
     {
         if (this.state.page_code.length < 3) {
             this.setState({
-                page_num: this.state.page_num * 3 + 1,
+                page_num: Number(this.state.page_num) * 3 + 1,
                 page_code: this.state.page_code + "U",
             });
         }
@@ -70,7 +123,7 @@ class StoryViewer extends Component {
     {
         if (this.state.page_code.length < 3) {
             this.setState({
-                page_num: this.state.page_num * 3 + 2,
+                page_num: Number(this.state.page_num) * 3 + 2,
                 page_code: this.state.page_code + "R",
             });
         }
@@ -79,7 +132,7 @@ class StoryViewer extends Component {
     {
         if (this.state.page_code.length < 3) {
             this.setState({
-                page_num: this.state.page_num * 3 + 3,
+                page_num: Number(this.state.page_num) * 3 + 3,
                 page_code: this.state.page_code + "D",
             });
         }
@@ -121,34 +174,78 @@ class StoryViewer extends Component {
                 </div>
             );
         }
-        const curCard = this.state.story.pages[this.state.page_num];
+        const curCard = this.state.story.pages[Number(this.state.page_num)];
+        const parentCard = this.state.story.pages[Math.floor((Number(this.state.page_num) - 1) / 3)];
+        let leftSiblingCard;
+        let rightSiblingCard;
+        if (Number(this.state.page_num) % 3 === 0) {
+            leftSiblingCard = this.state.story.pages[Number(this.state.page_num) - 1];
+            rightSiblingCard = this.state.story.pages[Number(this.state.page_num) - 2];
+        } else if (Number(this.state.page_num) % 3 === 1) {
+            leftSiblingCard = this.state.story.pages[Number(this.state.page_num) + 2];
+            rightSiblingCard = this.state.story.pages[Number(this.state.page_num) + 1];
+        } else {
+            leftSiblingCard = this.state.story.pages[Number(this.state.page_num) - 1];
+            rightSiblingCard = this.state.story.pages[Number(this.state.page_num) + 1];
+        }
+        const leftChildCard = this.state.story.pages[Number(this.state.page_num) * 3 + 1];
+        const midChildCard = this.state.story.pages[Number(this.state.page_num) * 3 + 2];
+        const rightChildCard = this.state.story.pages[Number(this.state.page_num) * 3 + 3];
+
         if (curCard.done) {
-            console.log("switch pages to");
-            console.log(curCard.page_num);
-            return (
-                <div>
-                    <h1>This is the Story Viewer Page!</h1>
-                    <StoryCard key={curCard._id} card={curCard} story_id = {this.props.story_id} userId = {this.props.userId}/>
-                    <button onClick={this.handleSubmit} type="B">
-                    Back
-                    </button>
-                    <button onClick={this.handleSubmit} type="U">
-                    Up
-                    </button>
-                    <button onClick={this.handleSubmit} type="R">
-                    Right
-                    </button>
-                    <button onClick={this.handleSubmit} type="D">
-                    Down
-                    </button>
-                </div>
-            );
+            if (Number(this.state.page_num) === 0) {
+            // root node
+                return (
+                    <div>
+                        <div className = "flex-center">
+                            {<StoryCard key={curCard._id} card={curCard} story_id = {this.props.story_id} userId = {this.props.userId}/>}
+                        </div>
+                        <div className = "flex-center">
+                            {<StoryCardIcon card={leftChildCard} type="leftChild" handleSubmit={this.handleSubmit}/>}
+                            {<StoryCardIcon card={midChildCard} type="midChild" handleSubmit={this.handleSubmit}/>}
+                            {<StoryCardIcon card={rightChildCard} type="rightChild" handleSubmit={this.handleSubmit}/>}
+                        </div>
+                    </div>
+                );
+            } else if (this.state.page_num > 12) {
+            // leaf node
+                return (
+                    <div>
+                        <div className = "flex-center">
+                            {<StoryCardIcon card={leftChildCard} type="parent" handleSubmit={this.handleSubmit}/>}
+                        </div>
+                        <div className = "flex-center">
+                            {<StoryCardIcon card={leftChildCard} type="leftSibling" handleSubmit={this.handleSubmit}/>}
+                            {<StoryCard key={curCard._id} card={curCard} story_id = {this.props.story_id} userId = {this.props.userId}/>}
+                            {<StoryCardIcon card={rightChildCard} type="rightSibling" handleSubmit={this.handleSubmit}/>}
+                        </div>
+                    </div>
+                );
+            } else {
+                return (
+                    <div>
+                        <div className = "flex-center">
+                            {<StoryCardIcon card={parentCard} type="parent" handleSubmit={this.handleSubmit}/>}
+                        </div>
+                        <div className = "flex-center">
+                            {<StoryCardIcon card={leftSiblingCard} type="leftSibling" handleSubmit={this.handleSubmit}/>}
+                            {<StoryCard key={curCard._id} card={curCard} story_id = {this.props.story_id} userId = {this.props.userId}/>}
+                            {<StoryCardIcon card={rightSiblingCard} type="rightSibling" handleSubmit={this.handleSubmit}/>}
+                        </div>
+                        <div className = "flex-center">
+                            {<StoryCardIcon card={leftChildCard} type="leftChild" handleSubmit={this.handleSubmit}/>}
+                            {<StoryCardIcon card={midChildCard} type="midChild" handleSubmit={this.handleSubmit}/>}
+                            {<StoryCardIcon card={rightChildCard} type="rightChild" handleSubmit={this.handleSubmit}/>}
+                        </div>
+                    </div>
+                );
+            }
         }
         else {
             return (
                 <div>
                     <h1> This is the Story Viewer Page!</h1>
-                    <CardInput updateCard = {this.updateCard} story_id = {this.props.story_id} page_num = {this.state.page_num} page_code = {this.state.page_code}/>
+                    <CardInput updateCard = {this.updateCard} story_id = {this.props.story_id} page_num = {Number(this.state.page_num)} page_code = {this.state.page_code}/>
                     <button onClick={this.handleSubmit} type="B">
                     Back
                     </button>

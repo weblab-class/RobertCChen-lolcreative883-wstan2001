@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Poiret+One|Gayathri|Girassol|Muli&display=swap');
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

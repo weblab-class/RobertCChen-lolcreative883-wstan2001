@@ -1,0 +1,28 @@
+.StoryCardIcon-container {
+    margin: 2px 8px;
+    padding: 2px 4px;
+    height: 80px;
+    width: 150px;
+    background-color: #E5ECF4;
+}
+
+.StoryCardIcon-container:hover {
+    background-color: rgb(176, 184, 196);
+}
+
+.StoryCardIcon-container > * {
+    pointer-events: none;
+}
+
+.IconCardContent {
+    white-space: pre-wrap;
+    font-size: 2px;
+}
+
+.IconTitle {
+    font-size: 10px;
+}
+
+.IconAuthor {
+    font-size: 7px;
+}
