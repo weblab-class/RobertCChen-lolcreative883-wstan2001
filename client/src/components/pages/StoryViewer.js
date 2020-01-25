@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import StoryCard from "../modules/StoryCard.js";
 import StoryCardIcon from "../modules/StoryCardIcon.js";
+import StoryTreeNode from "../modules/StoryTreeNode.js";
 import CardInput from "../modules/CardInput.js";
 
 import { get } from "../../utilities";
@@ -49,7 +50,14 @@ class StoryViewer extends Component {
   };
 
   handleSubmit = (event) => {
+    // clicking tree nodes
+    if (Number(event.target.getAttribute("type")) >= 0 && Number(event.target.getAttribute("type")) <= 40) {
+        this.setState({
+            page_num: Number(event.target.getAttribute("type")),
+        });
+    }
 
+    // clicking story icons
     let leftSibling;
     let rightSibling;
     if (Number(this.state.page_num) % 3 === 0) {
@@ -206,18 +214,37 @@ class StoryViewer extends Component {
             curReturn = (<CardInput updateCard = {this.updateCard} story_id = {this.props.story_id} page_num = {Number(this.state.page_num)} page_code = {this.state.page_code}/>);
         }
 
+        // building StoryTreeNavigator
+        let StoryTreeNavigator = [];
+        let i;
+        for (i = 0; i <= 40; i++) {
+            if (i === Number(this.state.page_num)) {
+                StoryTreeNavigator.push([<StoryTreeNode current={true} card={this.state.story.pages[i]} type={i} handleSubmit={this.handleSubmit}/>]);
+            } else {
+                StoryTreeNavigator.push([<StoryTreeNode card={this.state.story.pages[i]} type={i} handleSubmit={this.handleSubmit}/>]);
+            }
+        }
+
         //if (curCard.done) {
             if (Number(this.state.page_num) === 0) {
             // root node
                 return (
-                    <div>
-                        <div className = "flex-center">
-                            {curReturn}
+                    <div className = "flex-center">
+                        <div>
+                            <div className = "treeRow">{StoryTreeNavigator[0]}</div>
+                            <div className = "treeRow">{StoryTreeNavigator.slice(1,4)}</div>
+                            <div className = "treeRow">{StoryTreeNavigator.slice(4,13)}</div>
+                            <div className = "treeRow">{StoryTreeNavigator.slice(13,41)}</div>
                         </div>
-                        <div className = "flex-center">
-                                {<StoryCardIcon card={leftChildCard} type="leftChild" handleSubmit={this.handleSubmit}/>}
-                                {<StoryCardIcon card={midChildCard} type="midChild" handleSubmit={this.handleSubmit}/>}
-                                {<StoryCardIcon card={rightChildCard} type="rightChild" handleSubmit={this.handleSubmit}/>}
+                        <div>
+                            <div className = "flex-center">
+                                {curReturn}
+                            </div>
+                            <div className = "flex-center">
+                                    {<StoryCardIcon card={leftChildCard} type="leftChild" handleSubmit={this.handleSubmit}/>}
+                                    {<StoryCardIcon card={midChildCard} type="midChild" handleSubmit={this.handleSubmit}/>}
+                                    {<StoryCardIcon card={rightChildCard} type="rightChild" handleSubmit={this.handleSubmit}/>}
+                            </div>
                         </div>
                     </div>
                 );
@@ -225,33 +252,49 @@ class StoryViewer extends Component {
             else if (Number(this.state.page_num) > 12) {
             // leaf node
                 return (
-                    <div>
-                        <div className = "flex-center">
-                            {<StoryCardIcon card={parentCard} type="parent" handleSubmit={this.handleSubmit}/>}
+                    <div className = "flex-center">
+                        <div>
+                            <div className = "treeRow">{StoryTreeNavigator[0]}</div>
+                            <div className = "treeRow">{StoryTreeNavigator.slice(1,4)}</div>
+                            <div className = "treeRow">{StoryTreeNavigator.slice(4,13)}</div>
+                            <div className = "treeRow">{StoryTreeNavigator.slice(13,41)}</div>
                         </div>
-                        <div className = "flex-center">
-                            {<StoryCardIcon card={leftSiblingCard} type="leftSibling" handleSubmit={this.handleSubmit}/>}
-                            {curReturn}
-                            <StoryCardIcon card={rightSiblingCard} type="rightSibling" handleSubmit={this.handleSubmit}/>
+                        <div>
+                            <div className = "flex-center">
+                                {<StoryCardIcon card={parentCard} type="parent" handleSubmit={this.handleSubmit}/>}
+                            </div>
+                            <div className = "flex-center">
+                                {<StoryCardIcon card={leftSiblingCard} type="leftSibling" handleSubmit={this.handleSubmit}/>}
+                                {curReturn}
+                                <StoryCardIcon card={rightSiblingCard} type="rightSibling" handleSubmit={this.handleSubmit}/>
+                            </div>
                         </div>
                     </div>
                 );
             } 
             else {
                 return (
-                    <div>
-                        <div className = "flex-center">
-                            {<StoryCardIcon card={parentCard} type="parent" handleSubmit={this.handleSubmit}/>}
+                    <div className = "flex-center">
+                        <div>
+                            <div className = "treeRow">{StoryTreeNavigator[0]}</div>
+                            <div className = "treeRow">{StoryTreeNavigator.slice(1,4)}</div>
+                            <div className = "treeRow">{StoryTreeNavigator.slice(4,13)}</div>
+                            <div className = "treeRow">{StoryTreeNavigator.slice(13,41)}</div>
                         </div>
-                        <div className = "flex-center">
-                            {<StoryCardIcon card={leftSiblingCard} type="leftSibling" handleSubmit={this.handleSubmit}/>}
-                            {curReturn}
-                            {<StoryCardIcon card={rightSiblingCard} type="rightSibling" handleSubmit={this.handleSubmit}/>}
-                        </div>
-                        <div className = "flex-center">
-                            {<StoryCardIcon card={leftChildCard} type="leftChild" handleSubmit={this.handleSubmit}/>}
-                            {<StoryCardIcon card={midChildCard} type="midChild" handleSubmit={this.handleSubmit}/>}
-                            {<StoryCardIcon card={rightChildCard} type="rightChild" handleSubmit={this.handleSubmit}/>}
+                        <div>
+                            <div className = "flex-center">
+                                {<StoryCardIcon card={parentCard} type="parent" handleSubmit={this.handleSubmit}/>}
+                            </div>
+                            <div className = "flex-center">
+                                {<StoryCardIcon card={leftSiblingCard} type="leftSibling" handleSubmit={this.handleSubmit}/>}
+                                {curReturn}
+                                {<StoryCardIcon card={rightSiblingCard} type="rightSibling" handleSubmit={this.handleSubmit}/>}
+                            </div>
+                            <div className = "flex-center">
+                                {<StoryCardIcon card={leftChildCard} type="leftChild" handleSubmit={this.handleSubmit}/>}
+                                {<StoryCardIcon card={midChildCard} type="midChild" handleSubmit={this.handleSubmit}/>}
+                                {<StoryCardIcon card={rightChildCard} type="rightChild" handleSubmit={this.handleSubmit}/>}
+                            </div>
                         </div>
                     </div>
                 );
