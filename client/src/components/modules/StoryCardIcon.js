@@ -39,16 +39,6 @@ class StoryCardIcon extends Component {
         </div>
       );
     }
-    /*(this.props.card.content === undefined) ? return(
-        <div/>
-    ); : return (
-        <div>
-            <div className="StoryCard-container">
-                <h1>{this.props.cardTitle}</h1>
-                <div> {ret} </div>
-            </div>
-        </div>
-    );*/
   }
 }
 

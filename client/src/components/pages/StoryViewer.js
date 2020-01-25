@@ -176,8 +176,11 @@ class StoryViewer extends Component {
         }
         const curCard = this.state.story.pages[Number(this.state.page_num)];
         const parentCard = this.state.story.pages[Math.floor((Number(this.state.page_num) - 1) / 3)];
-        let leftSiblingCard;
-        let rightSiblingCard;
+        let leftSiblingCard = undefined;
+        let rightSiblingCard = undefined;
+        let leftChildCard = undefined;
+        let midChildCard = undefined;
+        let rightChildCard = undefined;
         if (Number(this.state.page_num) % 3 === 0) {
             leftSiblingCard = this.state.story.pages[Number(this.state.page_num) - 1];
             rightSiblingCard = this.state.story.pages[Number(this.state.page_num) - 2];
@@ -188,10 +191,11 @@ class StoryViewer extends Component {
             leftSiblingCard = this.state.story.pages[Number(this.state.page_num) - 1];
             rightSiblingCard = this.state.story.pages[Number(this.state.page_num) + 1];
         }
-        const leftChildCard = this.state.story.pages[Number(this.state.page_num) * 3 + 1];
-        const midChildCard = this.state.story.pages[Number(this.state.page_num) * 3 + 2];
-        const rightChildCard = this.state.story.pages[Number(this.state.page_num) * 3 + 3];
-
+        if (Number(this.state.page_num) < 13) {
+            leftChildCard = this.state.story.pages[Number(this.state.page_num) * 3 + 1];
+            midChildCard = this.state.story.pages[Number(this.state.page_num) * 3 + 2];
+            rightChildCard = this.state.story.pages[Number(this.state.page_num) * 3 + 3];
+        }
         if (curCard.done) {
             if (Number(this.state.page_num) === 0) {
             // root node
@@ -201,27 +205,29 @@ class StoryViewer extends Component {
                             {<StoryCard key={curCard._id} card={curCard} story_id = {this.props.story_id} userId = {this.props.userId}/>}
                         </div>
                         <div className = "flex-center">
-                            {<StoryCardIcon card={leftChildCard} type="leftChild" handleSubmit={this.handleSubmit}/>}
-                            {<StoryCardIcon card={midChildCard} type="midChild" handleSubmit={this.handleSubmit}/>}
-                            {<StoryCardIcon card={rightChildCard} type="rightChild" handleSubmit={this.handleSubmit}/>}
+                                {<StoryCardIcon card={leftChildCard} type="leftChild" handleSubmit={this.handleSubmit}/>}
+                                {<StoryCardIcon card={midChildCard} type="midChild" handleSubmit={this.handleSubmit}/>}
+                                {<StoryCardIcon card={rightChildCard} type="rightChild" handleSubmit={this.handleSubmit}/>}
                         </div>
                     </div>
                 );
-            } else if (this.state.page_num > 12) {
+            } 
+            else if (Number(this.state.page_num) > 12) {
             // leaf node
                 return (
                     <div>
                         <div className = "flex-center">
-                            {<StoryCardIcon card={leftChildCard} type="parent" handleSubmit={this.handleSubmit}/>}
+                            {<StoryCardIcon card={parentCard} type="parent" handleSubmit={this.handleSubmit}/>}
                         </div>
                         <div className = "flex-center">
-                            {<StoryCardIcon card={leftChildCard} type="leftSibling" handleSubmit={this.handleSubmit}/>}
+                            {<StoryCardIcon card={leftSiblingCard} type="leftSibling" handleSubmit={this.handleSubmit}/>}
                             {<StoryCard key={curCard._id} card={curCard} story_id = {this.props.story_id} userId = {this.props.userId}/>}
-                            {<StoryCardIcon card={rightChildCard} type="rightSibling" handleSubmit={this.handleSubmit}/>}
+                            {<StoryCardIcon card={rightSiblingCard} type="rightSibling" handleSubmit={this.handleSubmit}/>}
                         </div>
                     </div>
                 );
-            } else {
+            } 
+            else {
                 return (
                     <div>
                         <div className = "flex-center">
