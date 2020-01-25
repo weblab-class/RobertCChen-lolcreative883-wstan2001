@@ -174,6 +174,7 @@ class StoryViewer extends Component {
                 </div>
             );
         }
+
         const curCard = this.state.story.pages[Number(this.state.page_num)];
         const parentCard = this.state.story.pages[Math.floor((Number(this.state.page_num) - 1) / 3)];
         let leftSiblingCard = undefined;
@@ -196,13 +197,24 @@ class StoryViewer extends Component {
             midChildCard = this.state.story.pages[Number(this.state.page_num) * 3 + 2];
             rightChildCard = this.state.story.pages[Number(this.state.page_num) * 3 + 3];
         }
+
+        let curReturn;
         if (curCard.done) {
+            curReturn = (<StoryCard key={curCard._id} card={curCard} story_id = {this.props.story_id} userId = {this.props.userId}/>);
+        }
+        else {
+            curReturn = (<CardInput updateCard = {this.updateCard} story_id = {this.props.story_id} page_num = {Number(this.state.page_num)} page_code = {this.state.page_code}/>);
+        }
+
+        //if (curCard.done) {
             if (Number(this.state.page_num) === 0) {
             // root node
                 return (
                     <div>
                         <div className = "flex-center">
-                            {<StoryCard key={curCard._id} card={curCard} story_id = {this.props.story_id} userId = {this.props.userId}/>}
+                            {curReturn}
+                            {/*<StoryCard key={curCard._id} card={curCard} story_id = {this.props.story_id} userId = {this.props.userId}/>}
+                            */}
                         </div>
                         <div className = "flex-center">
                                 {<StoryCardIcon card={leftChildCard} type="leftChild" handleSubmit={this.handleSubmit}/>}
@@ -221,8 +233,8 @@ class StoryViewer extends Component {
                         </div>
                         <div className = "flex-center">
                             {<StoryCardIcon card={leftSiblingCard} type="leftSibling" handleSubmit={this.handleSubmit}/>}
-                            {<StoryCard key={curCard._id} card={curCard} story_id = {this.props.story_id} userId = {this.props.userId}/>}
-                            {<StoryCardIcon card={rightSiblingCard} type="rightSibling" handleSubmit={this.handleSubmit}/>}
+                            {curReturn}
+                            <StoryCardIcon card={rightSiblingCard} type="rightSibling" handleSubmit={this.handleSubmit}/>
                         </div>
                     </div>
                 );
@@ -235,7 +247,7 @@ class StoryViewer extends Component {
                         </div>
                         <div className = "flex-center">
                             {<StoryCardIcon card={leftSiblingCard} type="leftSibling" handleSubmit={this.handleSubmit}/>}
-                            {<StoryCard key={curCard._id} card={curCard} story_id = {this.props.story_id} userId = {this.props.userId}/>}
+                            {curReturn}
                             {<StoryCardIcon card={rightSiblingCard} type="rightSibling" handleSubmit={this.handleSubmit}/>}
                         </div>
                         <div className = "flex-center">
@@ -246,7 +258,7 @@ class StoryViewer extends Component {
                     </div>
                 );
             }
-        }
+        /*}
         else {
             return (
                 <div>
@@ -266,7 +278,7 @@ class StoryViewer extends Component {
                     </button>
                 </div>
             );
-        }
+        }*/
     }
 }
 
