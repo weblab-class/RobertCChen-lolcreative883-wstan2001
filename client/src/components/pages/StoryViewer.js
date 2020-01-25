@@ -217,7 +217,7 @@ class StoryViewer extends Component {
         // building StoryTreeNavigator
         let StoryTreeNavigator = [];
         let i;
-        for (i = 0; i <= 40; i++) {
+        for (i = 0; i < 40; i++) {
             if (i === Number(this.state.page_num)) {
                 StoryTreeNavigator.push([<StoryTreeNode current={true} card={this.state.story.pages[i]} type={i} handleSubmit={this.handleSubmit}/>]);
             } else {
@@ -234,7 +234,7 @@ class StoryViewer extends Component {
                             <div className = "treeRow">{StoryTreeNavigator[0]}</div>
                             <div className = "treeRow">{StoryTreeNavigator.slice(1,4)}</div>
                             <div className = "treeRow">{StoryTreeNavigator.slice(4,13)}</div>
-                            <div className = "treeRow">{StoryTreeNavigator.slice(13,41)}</div>
+                            <div className = "treeRow">{StoryTreeNavigator.slice(13,40)}</div>
                         </div>
                         <div>
                             <div className = "flex-center">
@@ -257,7 +257,7 @@ class StoryViewer extends Component {
                             <div className = "treeRow">{StoryTreeNavigator[0]}</div>
                             <div className = "treeRow">{StoryTreeNavigator.slice(1,4)}</div>
                             <div className = "treeRow">{StoryTreeNavigator.slice(4,13)}</div>
-                            <div className = "treeRow">{StoryTreeNavigator.slice(13,41)}</div>
+                            <div className = "treeRow">{StoryTreeNavigator.slice(13,40)}</div>
                         </div>
                         <div>
                             <div className = "flex-center">
@@ -279,7 +279,7 @@ class StoryViewer extends Component {
                             <div className = "treeRow">{StoryTreeNavigator[0]}</div>
                             <div className = "treeRow">{StoryTreeNavigator.slice(1,4)}</div>
                             <div className = "treeRow">{StoryTreeNavigator.slice(4,13)}</div>
-                            <div className = "treeRow">{StoryTreeNavigator.slice(13,41)}</div>
+                            <div className = "treeRow">{StoryTreeNavigator.slice(13,40)}</div>
                         </div>
                         <div>
                             <div className = "flex-center">
