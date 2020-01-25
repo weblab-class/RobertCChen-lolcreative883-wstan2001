@@ -213,8 +213,6 @@ class StoryViewer extends Component {
                     <div>
                         <div className = "flex-center">
                             {curReturn}
-                            {/*<StoryCard key={curCard._id} card={curCard} story_id = {this.props.story_id} userId = {this.props.userId}/>}
-                            */}
                         </div>
                         <div className = "flex-center">
                                 {<StoryCardIcon card={leftChildCard} type="leftChild" handleSubmit={this.handleSubmit}/>}
