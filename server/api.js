@@ -45,7 +45,7 @@ router.post("/initsocket", (req, res) => {
 
 router.post("/story", auth.ensureLoggedIn, (req, res) => {
   let storyPages = [];
-  for (i = 0; i < 41; i++)
+  for (i = 0; i < 40; i++)
   {
     storyPages = storyPages.concat([{
       cardTitle: undefined,

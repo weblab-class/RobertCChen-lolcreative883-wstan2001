@@ -1,0 +1,28 @@
+.StoryTreeNode {
+    margin: 10px 1px;
+    height: 10px;
+    width: 10px;
+    background-color: #E5ECF4;
+}
+
+.StoryTreeNode:hover {
+    background-color: rgb(176, 184, 196);
+}
+
+.BlankNode {
+    margin: 10px 1px;
+    height: 10px;
+    width: 10px;
+    background-color: rgb(166, 173, 182);
+}
+
+.BlankNode:hover {
+    background-color: rgb(13, 17, 22);
+}
+
+.CurrentNode {
+    margin: 10px 1px;
+    height: 10px;
+    width: 10px;
+    background-color: rgb(200, 233, 17);
+}

@@ -43,7 +43,7 @@ class Profile extends Component {
   render() {
     const stories = this.state.storyList.map((s, i) => (
       <div key = {s._id}>
-        <Link to={"/storyviewer/" + s._id + "/" + this.state.firstPages[i].toString()} > {s.storyTitle} </Link>
+        <Link to={"/storyviewer/" + s._id + "/" + this.state.firstPages[i].toString()} className="Story-link" > {s.storyTitle} </Link>
       </div>
     ));
     return (
