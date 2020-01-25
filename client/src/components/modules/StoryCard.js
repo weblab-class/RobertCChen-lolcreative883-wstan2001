@@ -112,7 +112,8 @@ class StoryCard extends Component {
             <span className="Author"> by {this.props.card.creator_name}</span>
             <hr/>
             <div className="CardContent"> {this.props.card.content} </div>
-            <button className={this.state.liked ? "Button Button-liked": "Button Button-unliked"} onClick={this.handleSubmit}>
+            <button className={this.state.liked ? "Button Button-liked": "Button Button-unliked"}
+             onClick={this.handleSubmit}>
                 Like
             </button>
             <span> {this.state.numLikes} </span>

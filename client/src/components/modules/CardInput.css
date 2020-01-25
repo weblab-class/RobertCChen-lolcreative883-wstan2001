@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Poiret+One|Gayathri|Girassol|Muli&display=swap');
+
 .CardInput-container {
     margin: var(--s) 64px;
-    padding: var(--s) var(--m);
+    padding: var(--m) var(--l);
     height: 400px;
     background-color: #E5ECF4;
+    width: 600px;
+    border-radius: 30px; 
 }
 
 .Title {
@@ -13,8 +17,40 @@
     font-size: 24px;
 }
 
+.Title-Input {
+    white-space: pre-wrap;
+    padding: 0px 3px;
+    border: 5px;
+    height: 18px;
+    width: 150px;
+    border-radius: 2px;
+    font-family: 'Muli', sans-serif;
+}
+
 .Text-Input {
     white-space: pre-wrap;
-    height: 290px;
-    width: 230px;
+    margin: 5px 20px 5px 20px;
+    padding: 10px;
+    height: 275px;
+    width: 540px;
+    border: 5px;
+    border-radius: 20px;
+    font-family: 'Muli', sans-serif;
+}
+
+.submitButton {
+    color: #034078;
+    background-color: white;
+    height: 20px;
+    width: 65px;
+    border-radius: 20px;
+    opacity: 0.8;
+    transition: 1s;
+    font-family: 'Muli', sans-serif;
+    font-size: 14px;
+}
+
+.submitButton:hover {
+    background-color: #034078;
+    color: #E5ECF4;
 }

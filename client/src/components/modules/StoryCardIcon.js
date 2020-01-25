@@ -35,7 +35,6 @@ class StoryCardIcon extends Component {
         <div className="StoryCardIcon-container" type={this.props.type} onClick={this.props.handleSubmit}>
             <span className="IconTitle"> No Story Card here yet! </span>
             <hr/>
-            <div> No content here yet! </div>
         </div>
       );
     }

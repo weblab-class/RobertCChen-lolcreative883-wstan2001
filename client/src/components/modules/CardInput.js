@@ -72,6 +72,7 @@ class CardInput extends Component {
                 placeholder={"Enter Card Title Here"}
                 value={this.state.valueTitle}
                 onChange={this.handleChangeTitle}
+                className="Title-Input"
                 />
             </span>
             <hr/>
@@ -90,6 +91,7 @@ class CardInput extends Component {
                 //className="NewPostInput-button u-pointer"
                 value="Submit"
                 onClick={this.handleSubmit}
+                className="submitButton"
                 >
                 Submit
                 </button>
