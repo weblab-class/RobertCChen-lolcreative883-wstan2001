@@ -229,8 +229,8 @@ class StoryViewer extends Component {
             if (Number(this.state.page_num) === 0) {
             // root node
                 return (
-                    <div className = "flex-center">
-                        <div>
+                    <div>
+                        <div className="treeContainer">
                             <div className = "treeRow">{StoryTreeNavigator[0]}</div>
                             <div className = "treeRow">{StoryTreeNavigator.slice(1,4)}</div>
                             <div className = "treeRow">{StoryTreeNavigator.slice(4,13)}</div>
@@ -252,8 +252,8 @@ class StoryViewer extends Component {
             else if (Number(this.state.page_num) > 12) {
             // leaf node
                 return (
-                    <div className = "flex-center">
-                        <div>
+                    <div>
+                        <div className="treeContainer">
                             <div className = "treeRow">{StoryTreeNavigator[0]}</div>
                             <div className = "treeRow">{StoryTreeNavigator.slice(1,4)}</div>
                             <div className = "treeRow">{StoryTreeNavigator.slice(4,13)}</div>
@@ -274,8 +274,8 @@ class StoryViewer extends Component {
             } 
             else {
                 return (
-                    <div className = "flex-center">
-                        <div>
+                    <div>
+                        <div className="treeContainer">
                             <div className = "treeRow">{StoryTreeNavigator[0]}</div>
                             <div className = "treeRow">{StoryTreeNavigator.slice(1,4)}</div>
                             <div className = "treeRow">{StoryTreeNavigator.slice(4,13)}</div>

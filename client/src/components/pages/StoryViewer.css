@@ -10,4 +10,10 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    width: 500px;
+}
+
+.treeContainer {
+    text-align: center;
+    padding: 10px 470px;
 }
