@@ -64,8 +64,7 @@ class CardInput extends Component {
   render() {
     return (
         <div className="CardInput-container">
-            <div> Now editing page {this.props.page_num}</div>
-            <div> Current page code {this.props.page_code}</div>
+            <div className="Muli-Font"> Now editing page {this.props.page_num}</div>
             <span>
                 <input
                 type="text"

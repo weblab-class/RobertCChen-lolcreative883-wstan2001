@@ -11,9 +11,11 @@
     justify-content: space-around;
     align-items: center;
     width: 500px;
+    position: relative;
+    left: 33vw;
 }
 
 .treeContainer {
     text-align: center;
-    padding: 10px 470px;
+    /*padding: 10px 470px;*/
 }
