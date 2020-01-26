@@ -11,11 +11,16 @@
     justify-content: space-around;
     align-items: center;
     width: 500px;
-    position: relative;
-    left: 33vw;
+    /*position: relative;
+    left: 50vw - 250px;*/
+    margin: auto;
 }
 
 .treeContainer {
     text-align: center;
-    /*padding: 10px 470px;*/
+    padding: 0px 0px 20px;
+}
+
+.visiBorder {
+    border-style: solid;
 }
