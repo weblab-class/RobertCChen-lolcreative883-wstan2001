@@ -10,6 +10,7 @@ import "./StoryCard.css";
  * Props: from StoryViewer
  * userId: from StoryViewer
  * story_id: from StoryViewer
+ * updateCard: from StoryViewer, what to do when card deleted
  * card: at minimum must have StoryCard
  *      cardTitle: 
  *      creator_id:
@@ -24,6 +25,7 @@ class StoryCard extends Component {
     this.state = {
       numLikes: 0,
       liked: false,
+      canDelete: false,
     };
   }
 
@@ -52,9 +54,20 @@ class StoryCard extends Component {
     }
   };
 
+  handleSubmitDelete = (event) =>  {
+    post("/api/deleteCard", {
+      story_id: this.props.story_id,
+      page_num: this.props.card.page_num,
+    }).then((story) => {
+      this.setState({
+        numLikes: 0,
+        liked: false,
+      })
+      this.props.updateCard();
+    });
+  }
+
   componentDidMount() {
-    //need to check whether we have like this story
-    console.log("component mounted");
     get("/api/getLikes", {
       story_id: this.props.story_id,
       page_num: this.props.card.page_num,
@@ -63,6 +76,21 @@ class StoryCard extends Component {
         numLikes: thing.num,
       });
     });
+
+    if (this.props.userId) {
+      //grab the story creator's ID
+      get("/api/creatorIdFromStoryId", {
+        story_id: this.props.story_id,
+      }).then((story) => {
+        if (story.author_id === this.props.userId){
+          this.setState({
+            canDelete: true,
+          });
+        }
+      });
+    }
+
+    //need to check whether we have like this story
     if (this.props.userId){
       get("/api/isLiked", {
         story_id: this.props.story_id,
@@ -81,6 +109,26 @@ class StoryCard extends Component {
   }
 
   componentDidUpdate() {
+    if (this.props.userId) {
+      //grab the story creator's ID
+      get("/api/creatorIdFromStoryId", {
+        story_id: this.props.story_id,
+      }).then((story) => {
+        if (story.author_id === this.props.userId && !this.state.canDelete){
+          this.setState({
+            canDelete: true,
+          });
+        }
+      });
+    }
+    else {
+      if (this.state.canDelete === true) {
+        this.setState({
+          canDelete: false,
+        })
+      }
+    }
+
     if (this.props.userId){
       get("/api/isLiked", {
         story_id: this.props.story_id,
@@ -108,8 +156,8 @@ class StoryCard extends Component {
     if (this.props.card.done) {
       return (
         <div className="StoryCard-container">
-            <span className="Title">{this.props.card.cardTitle}</span>
-            <span className="Author"> by {this.props.card.creator_name}</span>
+            <span className="Card-Title">{this.props.card.cardTitle}</span>
+            <span className="Card-Author"> by {this.props.card.creator_name}</span>
             <hr/>
             <div className="CardContent"> {this.props.card.content} </div>
             <button className={this.state.liked ? "Button Button-liked": "Button Button-unliked"}
@@ -117,13 +165,17 @@ class StoryCard extends Component {
                 Like
             </button>
             <span> {this.state.numLikes} </span>
+            {this.state.canDelete ? (<button 
+             onClick={this.handleSubmitDelete}>
+                Delete
+            </button>) : null}
         </div>
       );
     }
     else {
       return (
         <div className="StoryCard-container">
-            <span className="Title"> No Story Card here yet! </span>
+            <span className="Card-Title"> No Story Card here yet! </span>
             <hr/>
             <div> No content here yet! </div>
         </div>

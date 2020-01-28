@@ -8,6 +8,7 @@
     background-color: #E5ECF4;
     transition: 0.6s;
     border-radius: 10px;
+    animation: Icon-FadeIn 2s;
 }
 
 .StoryCardIcon-container:hover {
@@ -32,4 +33,10 @@
 .IconAuthor {
     font-size: 7px;
     font-family: 'Muli', sans-serif;
+}
+
+@keyframes Icon-FadeIn {
+    0% {opacity: 0;}
+    50% {opacity: 0;}
+    100% {opacity: 1;}
 }

@@ -71,7 +71,6 @@ router.get("/storyById", (req, res) => {
 });
 
 router.get("/storiesByUserId", (req, res) => {
-  console.log("Asking for stories edited by user " + req.query.userId);
   StoryObj.find({$or: [{"pages.creator_id": req.query.userId}, {author_id: req.query.userId}]}).then((stories) => res.send(stories));
 });
 
@@ -96,6 +95,29 @@ router.post("/card", auth.ensureLoggedIn, (req, res) => {
     story.save().then((s) => res.send(s));
   });
 });
+
+//req must specify story's id, page number
+router.post("/deleteCard", auth.ensureLoggedIn, (req, res) => {
+  StoryObj.findOne({_id: req.body.story_id}).then((story) => {
+    story.pages[req.body.page_num] = {
+      cardTitle: undefined,
+      creator_name: undefined,
+      creator_id: undefined,
+      page_num: req.body.page_num,
+      content: undefined,
+      done: false,
+      likes: undefined,
+    };
+    story.save().then((s) => res.send(s));
+  });
+});
+
+//takes in storyId
+router.get("/creatorIdFromStoryId", (req, res) => {
+  StoryObj.findOne({_id: req.query.story_id}).then((story) => {
+    res.send(story);
+  });
+})
 
 //req will specify story's id and page number
 router.post("/like", auth.ensureLoggedIn, (req, res) => {
@@ -144,9 +166,6 @@ router.get("/isLiked", auth.ensureLoggedIn, (req, res) => {
   StoryObj.findOne({_id: req.query.story_id}).then((story) => {
     //have to send back an object!
     const liked = story.pages[req.query.page_num].likes.includes(req.user._id);
-    console.log(req.user._id);
-    console.log(story.pages[req.query.page_num].likes);
-    console.log(liked);
     res.send({didLike: liked});
   });
 });

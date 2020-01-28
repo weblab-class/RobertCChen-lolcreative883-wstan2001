@@ -28,7 +28,6 @@ import "./StoryViewer.css";
  * page_num: self explanatory
  * page_code: ie UUR
  * 
- * CAREFUL: the "done" prop might be outdated, so "done" state takes precedence
  */
 class StoryViewer extends Component {
   constructor(props) {
@@ -208,7 +207,7 @@ class StoryViewer extends Component {
 
         let curReturn;
         if (curCard.done) {
-            curReturn = (<StoryCard key={curCard._id} card={curCard} story_id = {this.props.story_id} userId = {this.props.userId}/>);
+            curReturn = (<StoryCard key={curCard._id} updateCard = {this.updateCard} card={curCard} story_id = {this.props.story_id} userId = {this.props.userId}/>);
         }
         else {
             curReturn = (<CardInput updateCard = {this.updateCard} story_id = {this.props.story_id} page_num = {Number(this.state.page_num)} page_code = {this.state.page_code}/>);

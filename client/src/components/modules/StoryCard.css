@@ -7,12 +7,14 @@
     width: 600px;
     background-color: #E5ECF4;
     border-radius: 30px;
+    animation: Card-FadeIn 1s;
 }
 
 .CardContent {
     white-space: pre-wrap;
     height: 315px;
     font-family: 'Muli', sans-serif;
+    animation: Content-FadeIn 1.4s;
 }
 
 .Button {
@@ -45,12 +47,31 @@
     color: #034078;
 }
 
-.Title {
+.Card-Title {
     font-size: 40px;
     font-family: 'Poiret One', sans-serif;
+    animation: TitleAuth-FadeIn 1s;
 }
 
-.Author {
+.Card-Author {
     font-size: 24px;
-    font-family: 'Muli', sans-serif
+    font-family: 'Muli', sans-serif;
+    animation: TitleAuth-FadeIn 1s;
+}
+
+@keyframes Card-FadeIn {
+    0% {opacity: 0.4;}
+    100% {opacity: 1;}
+}
+
+@keyframes TitleAuth-FadeIn {
+    0% {opacity: 0;}
+    30% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes Content-FadeIn {
+    0% {opacity: 0;}
+    50% {opacity: 0;}
+    100% {opacity: 1;}
 }

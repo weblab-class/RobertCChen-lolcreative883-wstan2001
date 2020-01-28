@@ -19,6 +19,10 @@ class StoryCardIcon extends Component {
     super(props);
   }
 
+  componentDidUpdate() {
+    this.render();
+  }
+
   render() {
     if (this.props.card.done) {
       return (
