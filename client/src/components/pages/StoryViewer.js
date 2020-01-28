@@ -240,9 +240,9 @@ class StoryViewer extends Component {
                             {curReturn}
                         </div>
                         <div className = "flex-center">
-                                {<StoryCardIcon card={leftChildCard} type="leftChild" handleSubmit={this.handleSubmit}/>}
-                                {<StoryCardIcon card={midChildCard} type="midChild" handleSubmit={this.handleSubmit}/>}
-                                {<StoryCardIcon card={rightChildCard} type="rightChild" handleSubmit={this.handleSubmit}/>}
+                                {<StoryCardIcon key={`leftChild${this.state.page_num}`} card={leftChildCard} type="leftChild" handleSubmit={this.handleSubmit}/>}
+                                {<StoryCardIcon key={`midChild${this.state.page_num}`} card={midChildCard} type="midChild" handleSubmit={this.handleSubmit}/>}
+                                {<StoryCardIcon key={`rightChild${this.state.page_num}`} card={rightChildCard} type="rightChild" handleSubmit={this.handleSubmit}/>}
                         </div>
                     </div>
                 </div>
@@ -260,12 +260,12 @@ class StoryViewer extends Component {
                     </div>
                     <div>
                         <div className = "flex-center">
-                            {<StoryCardIcon card={parentCard} type="parent" handleSubmit={this.handleSubmit}/>}
+                            {<StoryCardIcon key={`par${this.state.page_num}`} card={parentCard} type="parent" handleSubmit={this.handleSubmit}/>}
                         </div>
                         <div className = "flex-center">
-                            {<StoryCardIcon card={leftSiblingCard} type="leftSibling" handleSubmit={this.handleSubmit}/>}
+                            {<StoryCardIcon key={`leftSib${this.state.page_num}`} card={leftSiblingCard} type="leftSibling" handleSubmit={this.handleSubmit}/>}
                             {curReturn}
-                            <StoryCardIcon card={rightSiblingCard} type="rightSibling" handleSubmit={this.handleSubmit}/>
+                            <StoryCardIcon key={`rightSib${this.state.page_num}`} card={rightSiblingCard} type="rightSibling" handleSubmit={this.handleSubmit}/>
                         </div>
                     </div>
                 </div>
@@ -282,17 +282,17 @@ class StoryViewer extends Component {
                     </div>
                     <div>
                         <div className = "flex-center">
-                            {<StoryCardIcon card={parentCard} type="parent" handleSubmit={this.handleSubmit}/>}
+                            {<StoryCardIcon key={`par${this.state.page_num}`} card={parentCard} type="parent" handleSubmit={this.handleSubmit}/>}
                         </div>
                         <div className = "flex-center">
-                            {<StoryCardIcon card={leftSiblingCard} type="leftSibling" handleSubmit={this.handleSubmit}/>}
+                            {<StoryCardIcon key={`leftSib${this.state.page_num}`} card={leftSiblingCard} type="leftSibling" handleSubmit={this.handleSubmit}/>}
                             {curReturn}
-                            {<StoryCardIcon card={rightSiblingCard} type="rightSibling" handleSubmit={this.handleSubmit}/>}
+                            {<StoryCardIcon key={`rightSib${this.state.page_num}`} card={rightSiblingCard} type="rightSibling" handleSubmit={this.handleSubmit}/>}
                         </div>
                         <div className = "flex-center">
-                            {<StoryCardIcon card={leftChildCard} type="leftChild" handleSubmit={this.handleSubmit}/>}
-                            {<StoryCardIcon card={midChildCard} type="midChild" handleSubmit={this.handleSubmit}/>}
-                            {<StoryCardIcon card={rightChildCard} type="rightChild" handleSubmit={this.handleSubmit}/>}
+                            {<StoryCardIcon key={`leftChild${this.state.page_num}`} card={leftChildCard} type="leftChild" handleSubmit={this.handleSubmit}/>}
+                            {<StoryCardIcon key={`midChild${this.state.page_num}`} card={midChildCard} type="midChild" handleSubmit={this.handleSubmit}/>}
+                            {<StoryCardIcon key={`rightChild${this.state.page_num}`} card={rightChildCard} type="rightChild" handleSubmit={this.handleSubmit}/>}
                         </div>
                     </div>
                 </div>
