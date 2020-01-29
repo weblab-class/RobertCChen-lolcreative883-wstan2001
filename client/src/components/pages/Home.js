@@ -52,7 +52,7 @@ class Home extends Component {
   <p></p>
 
       <div class="typewriter">
-        <div class="typewriter-text4">The pen is in your hands... start creating! Hit the Browse button to look through stories or start your own!</div>
+        <div class="typewriter-text4">The pen is in your hands... start creating! Hit "Stories" on the NavBar to look through stories or start your own!</div>
       </div>
 
       </center>
