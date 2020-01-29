@@ -62,7 +62,9 @@ class CardInput extends Component {
   };
 
   render() {
-    return (
+    console.log(this.props.userId)
+    if (this.props.userId) {
+      return (
         <div className="CardInput-container">
             <div className="Input-TitleAuth-Container">
               <div className="Muli-Font"> Now editing page {this.props.page_num}</div>
@@ -98,7 +100,38 @@ class CardInput extends Component {
                 </button>
             </div>
         </div>
-    );
+      );
+    } else {
+      return (
+        <div className="CardInput-container">
+            <div className="Input-TitleAuth-Container">
+              <div className="Muli-Font"> Now editing page {this.props.page_num}</div>
+              <span>
+                  <input
+                  type="text"
+                  placeholder={"Enter Card Title Here"}
+                  value={this.state.valueTitle}
+                  onChange={this.handleChangeTitle}
+                  className="Title-Input"
+                  />
+              </span>
+            </div>
+            <hr/>
+            <div> 
+                <textarea
+                type="text"
+                placeholder={"Enter Card Content Here"}
+                value={this.state.valueContent}
+                onChange={this.handleChangeContent}
+                className = "Text-Input"
+                />
+            </div>
+            <div className="Muli-Font" key={this.props.userId}>
+                Please log in to save changes.
+            </div>
+        </div>
+      );
+    }
   }
 }
 
