@@ -40,7 +40,7 @@ class Home extends Component {
   <p></p>
 
       <div class="typewriter">
-        <div class="typewriter-text2">We, Team Git Bashed, created this website to give people all around the world a chance to come together and volunteer their creative spirit, one step at a time!</div>
+        <div class="typewriter-text2">We, Team Git Bashed, created this website to give writers a chance to gather and volunteer their creative spirit, one step at a time!</div>
       </div>
 
   <p></p>
