@@ -5,9 +5,15 @@ Melting Plot is a choose-your-own-story-esque, collaborative platform for writer
 https://melting-plot.herokuapp.com/
 
 
+For information on how to use the app, visit the stories page and read our tutorial!
+
+
 Frontend frameworks: React.js
+
 Backend frameworks: Node.js
+
 Database: MongoDB
+
 Addditional APIs: Google Login API
 
 
