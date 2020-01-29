@@ -45,18 +45,22 @@ class Browse extends Component {
         <Link to={"/storyviewer/" + s._id + "/0"} className="Story-link" > {s.storyTitle} </Link>
       </div>
     ));
+
+    let recentThreeStories = stories.slice(Math.max(stories.length - 3, 1)).reverse();
+
     return (
       <div>
         <div className="Block">
-          <h1 className="Heading">All Stories</h1>
-          {stories}
-        </div>
-        <br/>
-        <br/>
-        <br/>
-        <div className="BlockDelay">
           <h1 className = "Heading"> Add a Story </h1>
           <StoryInput addNewStory = {this.addNewStory}/>
+        </div>
+        <div className="BlockDelay">
+          <h1 className="Heading">Most Recent</h1>
+          {recentThreeStories}
+        </div>
+        <div className="BlockDelay">
+          <h1 className="Heading">All Stories</h1>
+          {stories}
         </div>
       </div>
     );

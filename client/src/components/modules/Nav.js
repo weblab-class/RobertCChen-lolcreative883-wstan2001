@@ -30,7 +30,7 @@ class Nav extends Component {
                         Home
                     </Link>
                     <Link to="/browse" className="NavBar-link">
-                        Browse
+                        Stories
                     </Link>
                     {this.props.userId && (
                         <Link to={`/profile/${this.props.userId}`} className="NavBar-link">
