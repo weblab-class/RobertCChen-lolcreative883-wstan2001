@@ -17,6 +17,11 @@
     animation: Content-FadeIn 1.4s;
 }
 
+.Button-Container {
+    display: flex;
+    justify-content: space-between;
+}
+
 .Button {
     height: 20px;
     width: 45px;
@@ -45,6 +50,22 @@
 .Button-liked:hover {
     background-color: white;
     color: #034078;
+}
+
+.StoryCard-Delete-Button {
+    height: 20px;
+    width: 60px;
+    border-radius: 20px;
+    opacity: 0.8;
+    transition: 1s;
+    font-family: 'Muli', sans-serif;
+    font-size: 14px;
+    margin-right: 0;
+}
+
+.StoryCard-Delete-Button:hover {
+    background-color: #034078;
+    color: #E5ECF4;
 }
 
 .Card-Title {

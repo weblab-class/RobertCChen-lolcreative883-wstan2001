@@ -160,15 +160,20 @@ class StoryCard extends Component {
             <span className="Card-Author"> by {this.props.card.creator_name}</span>
             <hr/>
             <div className="CardContent"> {this.props.card.content} </div>
-            <button className={this.state.liked ? "Button Button-liked": "Button Button-unliked"}
-             onClick={this.handleSubmit}>
-                Like
-            </button>
-            <span> {this.state.numLikes} </span>
-            {this.state.canDelete ? (<button 
-             onClick={this.handleSubmitDelete}>
-                Delete
-            </button>) : null}
+            <div className="Button-Container"> 
+              <span>
+                <button className={this.state.liked ? "Button Button-liked": "Button Button-unliked"}
+                onClick={this.handleSubmit}>
+                    Like
+                </button>
+                <span> {this.state.numLikes} </span>
+              </span>
+              {this.state.canDelete ? (<button 
+              onClick={this.handleSubmitDelete}
+              className="StoryCard-Delete-Button">
+                  Delete
+              </button>) : null}
+            </div>
         </div>
       );
     }

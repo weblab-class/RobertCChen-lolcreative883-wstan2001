@@ -20,11 +20,45 @@
     color: #9198E5;
 }
 
-.Block {
+.Profile-Block {
+    margin: var(--l) var(--l) -4px;
+    animation: ProfileFadeIn 2s;
+}
+
+.Profile-BlockDelay {
     margin: var(--l) var(--l);
+    animation: ProfileFadeInDelay 3s;
 }
 
-.Regular-Text{
+.Profile-Regular-Text{
     font-family: "Muli", sans-serif;
-
+    opacity: 0.8;
+    color: #034078;
 }
+
+.Profile-Delete-Button {
+    height: 18px;
+    width: 54px;
+    border-radius: 20px;
+    opacity: 0.8;
+    transition: 1s;
+    font-family: 'Muli', sans-serif;
+    font-size: 12px;
+}
+
+.Profile-Delete-Button:hover {
+    background-color: #034078;
+    color: #E5ECF4;
+}
+
+@keyframes ProfileFadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes ProfileFadeInDelay {
+    0% {opacity: 0;}
+    33% {opacity: 0;}
+    100% {opacity: 1;}
+}
+

@@ -70,6 +70,7 @@ class App extends Component {
             />
             <Profile
               path="/profile/:userId"
+              key={this.state.userId}
               userName = {this.state.userName}
             />
             <StoryViewer

@@ -64,16 +64,18 @@ class CardInput extends Component {
   render() {
     return (
         <div className="CardInput-container">
-            <div className="Muli-Font"> Now editing page {this.props.page_num}</div>
-            <span>
-                <input
-                type="text"
-                placeholder={"Enter Card Title Here"}
-                value={this.state.valueTitle}
-                onChange={this.handleChangeTitle}
-                className="Title-Input"
-                />
-            </span>
+            <div className="Input-TitleAuth-Container">
+              <div className="Muli-Font"> Now editing page {this.props.page_num}</div>
+              <span>
+                  <input
+                  type="text"
+                  placeholder={"Enter Card Title Here"}
+                  value={this.state.valueTitle}
+                  onChange={this.handleChangeTitle}
+                  className="Title-Input"
+                  />
+              </span>
+            </div>
             <hr/>
             <div> 
                 <textarea

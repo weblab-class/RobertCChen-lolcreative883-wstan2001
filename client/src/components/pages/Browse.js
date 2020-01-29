@@ -37,9 +37,7 @@ class Browse extends Component {
   render() {
     if (!this.state.storyList) {
       return (
-        <div>
-          <span className="Regular-Text"> Now Fetching Stories... </span>
-        </div>
+        <div/>
       );
     }
     let stories = this.state.storyList.map(s => (

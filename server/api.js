@@ -66,6 +66,11 @@ router.post("/story", auth.ensureLoggedIn, (req, res) => {
   newStoryObj.save().then((storyObj) => res.send(storyObj))
 });
 
+//take in story_id
+router.post("/deleteStory", auth.ensureLoggedIn, (req, res) => {
+  StoryObj.deleteOne({_id: req.body.story_id}).then((story) => console.log("deleted"));
+});
+
 router.get("/storyById", (req, res) => {
   StoryObj.findOne({_id: req.query.story_id}).then((story) => res.send(story));
 });

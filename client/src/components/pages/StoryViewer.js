@@ -210,7 +210,7 @@ class StoryViewer extends Component {
             curReturn = (<StoryCard key={curCard._id} updateCard = {this.updateCard} card={curCard} story_id = {this.props.story_id} userId = {this.props.userId}/>);
         }
         else {
-            curReturn = (<CardInput updateCard = {this.updateCard} story_id = {this.props.story_id} page_num = {Number(this.state.page_num)} page_code = {this.state.page_code}/>);
+            curReturn = (<CardInput key={curCard._id} updateCard = {this.updateCard} story_id = {this.props.story_id} page_num = {Number(this.state.page_num)} page_code = {this.state.page_code}/>);
         }
 
         // building StoryTreeNavigator

@@ -7,6 +7,7 @@
     background-color: #E5ECF4;
     width: 600px;
     border-radius: 30px; 
+    animation: Input-FadeIn 1s;
 }
 
 .Muli-Font {
@@ -32,6 +33,11 @@
     border: 5px;
     border-radius: 20px;
     font-family: 'Muli', sans-serif;
+    animation: Input-Content-FadeIn 1.4s;
+}
+
+.Input-TitleAuth-Container {
+    animation: Input-TitleAuth-FadeIn 1s;
 }
 
 .submitButton {
@@ -49,4 +55,21 @@
 .submitButton:hover {
     background-color: #034078;
     color: #E5ECF4;
+}
+
+@keyframes Input-FadeIn {
+    0% {opacity: 0.4;}
+    100% {opacity: 1;}
+}
+
+@keyframes Input-TitleAuth-FadeIn {
+    0% {opacity: 0;}
+    30% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes Input-Content-FadeIn {
+    0% {opacity: 0;}
+    50% {opacity: 0;}
+    100% {opacity: 1;}
 }
