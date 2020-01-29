@@ -50,10 +50,12 @@ class Browse extends Component {
 
     return (
       <div>
-        <div className="Block">
-          <h1 className = "Heading"> Add a Story </h1>
-          <StoryInput addNewStory = {this.addNewStory}/>
-        </div>
+        {this.props.userId ? (
+            <div className="Block">
+            <h1 className = "Heading"> Add a Story </h1>
+            <StoryInput addNewStory = {this.addNewStory}/>
+          </div>
+        ) : null}
         <div className="BlockDelay">
           <h1 className="Heading">Most Recent</h1>
           {recentThreeStories}
