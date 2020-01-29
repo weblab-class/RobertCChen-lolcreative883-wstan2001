@@ -46,7 +46,7 @@ class Browse extends Component {
       </div>
     ));
 
-    let recentThreeStories = stories.slice(Math.max(stories.length - 3, 1)).reverse();
+    let recentThreeStories = stories.slice(Math.max(stories.length - 3, 0)).reverse();
 
     return (
       <div>
