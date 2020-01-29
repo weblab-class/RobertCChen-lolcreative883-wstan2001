@@ -156,8 +156,10 @@ class StoryCard extends Component {
     if (this.props.card.done) {
       return (
         <div className="StoryCard-container">
-            <span className="Card-Title">{this.props.card.cardTitle}</span>
-            <span className="Card-Author"> by {this.props.card.creator_name}</span>
+            <div className="StoryCard-header">
+              <span className="Card-Title">{this.props.card.cardTitle}</span>
+              <span className="Card-Author"> by {this.props.card.creator_name}</span>
+            </div>
             <hr/>
             <div className="CardContent"> {this.props.card.content} </div>
             <div className="Button-Container"> 

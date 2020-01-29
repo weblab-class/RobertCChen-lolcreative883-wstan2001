@@ -8,6 +8,12 @@
     background-color: #E5ECF4;
     border-radius: 30px;
     animation: Card-FadeIn 1s;
+    overflow: hidden;
+}
+
+.StoryCard-header {
+    white-space: nowrap;
+    overflow: auto;
 }
 
 .CardContent {
@@ -15,6 +21,7 @@
     height: 315px;
     font-family: 'Muli', sans-serif;
     animation: Content-FadeIn 1.4s;
+    overflow:auto;
 }
 
 .Button-Container {
