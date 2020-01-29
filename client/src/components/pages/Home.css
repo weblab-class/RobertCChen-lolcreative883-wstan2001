@@ -10,7 +10,7 @@
 }
 
 .HomeTitle2 {
-    font-size: 60px;
+    font-size: 50px;
     font-family: 'Poiret One', cursive;
     animation: fadeInDelay 4s;
     position: fixed;
@@ -21,6 +21,7 @@
 
 
 .Logo {
+    transform: translate(0%, 10%);
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -40,13 +41,13 @@
 .typewriter-text {
     margin: auto;
     text-align: center;
-    transform: translate(0%, 400%);
+    transform: translate(0%, 500%);
     display: inline-block;
   	overflow: hidden;
   	letter-spacing: 2px;
  	  animation: typing 4s steps(60, end), blink .75s step-end 6;
     white-space: nowrap;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 700;
     border-right: 4px solid #a9a9a9;
     box-sizing: border-box;
@@ -58,13 +59,13 @@
 .typewriter-text2 {
     margin: auto;
     text-align: center;
-    transform: translate(0%, 400%);
+    transform: translate(0%, 500%);
     display: inline-block;
   	overflow: hidden;
   	letter-spacing: 2px;
  	  animation: typing 4s steps(60, end), blink .75s step-end 6;
     white-space: nowrap;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 700;
     border-right: 4px solid #a9a9a9;
     box-sizing: border-box;
@@ -76,13 +77,13 @@
 .typewriter-text3 {
     margin: auto;
     text-align: center;
-    transform: translate(0%, 400%);
+    transform: translate(0%, 500%);
     display: inline-block;
   	overflow: hidden;
   	letter-spacing: 2px;
  	  animation: typing 4s steps(60, end), blink .75s step-end 6;
     white-space: nowrap;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 700;
     border-right: 4px solid #a9a9a9;
     box-sizing: border-box;
@@ -94,13 +95,13 @@
 .typewriter-text4 {
     margin: auto;
     text-align: center;
-    transform: translate(0%, 400%);
+  transform: translate(0%, 500%);
     display: inline-block;
   	overflow: hidden;
   	letter-spacing: 2px;
  	  animation: typing 4s steps(60, end), blink .75s step-end infinite;
     white-space: nowrap;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 700;
     border-right: 4px solid #a9a9a9;
     box-sizing: border-box;
