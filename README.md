@@ -9,9 +9,10 @@ https://melting-plot.herokuapp.com/
 
 For information on how to use the app, visit the stories page and read our tutorial!
 
-
+# Tools Used
 
 Frontend frameworks: React.js
+
 Backend frameworks: Node.js
 
 Database: MongoDB
@@ -19,5 +20,6 @@ Database: MongoDB
 Addditional APIs: Google Login API
 
 
+# By
 
 Created by: Stanley Wang, Robert Chen, Chanseo Lee
